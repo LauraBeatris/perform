@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  postgres:
+    container_name: postgres
+    image: "library/postgres:latest"
+    env_file:
+      - .env
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DATABASE: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USER}
+    ports:
+      "5432:5432"
+  redis:
+    image: redis:4.0.5-alpine
+    container_name: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    networks:
+      - redis-net
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+volumes:
+  redis-data:
+  database-data:
+networks:
+  redis-net:
