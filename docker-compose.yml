@@ -13,7 +13,7 @@ services:
       POSTGRES_DATABASE: ${DB_DATABASE}
       POSTGRES_USER: ${DB_USER}
     ports:
-      "5432:5432"
+      - "5432:5432"
   redis:
     image: redis:4.0.5-alpine
     container_name: redis
