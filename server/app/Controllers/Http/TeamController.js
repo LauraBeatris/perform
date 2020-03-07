@@ -1,5 +1,8 @@
 'use strict'
 
+/*
+  Controller responsable for the teams of the ==> logged user <==
+*/
 class TeamController {
   async index ({ response, auth }) {
     try {
@@ -77,7 +80,6 @@ class TeamController {
     const { id } = params
     try {
       const team = await user.teams().where('teams.id', id).first()
-      console.log(team)
       await team.delete()
       return response.status(200).send({
         success: { message: `The team ${team.name} was successfully deleted` }

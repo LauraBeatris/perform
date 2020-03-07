@@ -1,6 +1,7 @@
 'use strict'
 
 const User = use('App/Models/User')
+const UserService = use('App/Services/Users')
 
 class UserController {
   async index ({ response }) {
@@ -22,9 +23,6 @@ class UserController {
   async store ({ request, response }) {
     const data = request.only(['name', 'email', 'password'])
     try {
-      const existingUser = await User.findBy('email', data.email)
-      if (existingUser) return response.status(401).send({ error: { message: 'This email has already being used' } })
-
       const user = await User.create(data)
       return user
     } catch (err) {

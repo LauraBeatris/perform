@@ -22,3 +22,7 @@ Route.group(() => {
   Route.resource('users', 'UserController').apiOnly().except('store')
   Route.resource('teams', 'TeamController').apiOnly()
 }).middleware(['auth'])
+
+Route.group(() => {
+  Route.resource('invites', 'InviteController').apiOnly()
+}).middleware(['auth', 'team'])
