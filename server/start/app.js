@@ -16,7 +16,12 @@ const providers = [
   '@adonisjs/bodyparser/providers/BodyParserProvider',
   '@adonisjs/cors/providers/CorsProvider',
   '@adonisjs/lucid/providers/LucidProvider',
-  '@adonisjs/lucid-slugify/providers/SlugifyProvider'
+  '@adonisjs/lucid-slugify/providers/SlugifyProvider',
+  'adonis-kue/providers/KueProvider',
+  'adonis-kue/providers/CommandsProvider',
+  '@adonisjs/redis/providers/RedisProvider',
+  '@adonisjs/framework/providers/ViewProvider',
+  '@adonisjs/mail/providers/MailProvider'
 ]
 
 /*
@@ -56,4 +61,17 @@ const aliases = {}
 */
 const commands = []
 
-module.exports = { providers, aceProviders, aliases, commands }
+/*
+|--------------------------------------------------------------------------
+| Jobs
+|--------------------------------------------------------------------------
+|
+| Here you store your kue jobs
+|
+*/
+
+const jobs = [
+  'App/Jobs/Mail'
+]
+
+module.exports = { providers, aceProviders, aliases, commands, jobs }

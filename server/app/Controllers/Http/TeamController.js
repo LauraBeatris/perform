@@ -76,10 +76,8 @@ class TeamController {
   }
 
   async destroy ({ params, auth, response }) {
-    const { user } = auth
-    const { id } = params
     try {
-      const team = await user.teams().where('teams.id', id).first()
+      const team = await auth.user.teams().where('teams.id', params.id).first()
       await team.delete()
       return response.status(200).send({
         success: { message: `The team ${team.name} was successfully deleted` }

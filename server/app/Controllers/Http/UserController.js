@@ -1,7 +1,6 @@
 'use strict'
 
 const User = use('App/Models/User')
-const UserService = use('App/Services/Users')
 
 class UserController {
   async index ({ response }) {
@@ -37,10 +36,8 @@ class UserController {
   }
 
   async show ({ params, response }) {
-    const { id } = params
-
     try {
-      const user = await User.findOrFail(id)
+      const user = await User.findOrFail(params.id)
 
       return user
     } catch (err) {
@@ -55,11 +52,10 @@ class UserController {
   }
 
   async update ({ params, request, response }) {
-    const { id } = params
     const data = request.only(['name', 'email'])
 
     try {
-      const user = await User.findOrFail(id)
+      const user = await User.findOrFail(params.id)
       user.merge(data)
       await user.save()
 
@@ -76,10 +72,8 @@ class UserController {
   }
 
   async destroy ({ params, response }) {
-    const { id } = params
-
     try {
-      const user = await User.findOrFail(id)
+      const user = await User.findOrFail(params.id)
       await user.delete()
 
       return response.status(200).send({
