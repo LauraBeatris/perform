@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Project extends Model {
+  project () {
+    return this.belongsTo('App/Model/Project')
+  }
 }
 
 module.exports = Project

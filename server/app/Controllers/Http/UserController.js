@@ -29,7 +29,6 @@ class UserController {
       const user = await User.create(data, trx)
 
       const existingInvites = Invite.query().where('email', data.email)
-      console.log(existingInvites)
       const teams = await existingInvites.pluck('team_id')
 
       if (teams.length > 0) {
