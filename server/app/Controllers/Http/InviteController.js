@@ -67,7 +67,7 @@ class InviteController {
   }
 
   async update ({ params, request, response }) {
-    const data = request.only(['team_id'])
+    const data = request.only(['team_id', 'confirmed'])
 
     try {
       const invite = await Invite.findOrFail(params.id)

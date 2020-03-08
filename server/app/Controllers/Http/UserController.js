@@ -1,6 +1,8 @@
 'use strict'
 
 const User = use('App/Models/User')
+const Invite = use('App/Models/Invite')
+const Database = use('Database')
 
 class UserController {
   async index ({ response }) {
@@ -21,10 +23,25 @@ class UserController {
 
   async store ({ request, response }) {
     const data = request.only(['name', 'email', 'password'])
+    const trx = await Database.beginTransaction()
+
     try {
-      const user = await User.create(data)
+      const user = await User.create(data, trx)
+
+      const existingInvites = Invite.query().where('email', data.email)
+      console.log(existingInvites)
+      const teams = await existingInvites.pluck('team_id')
+
+      if (teams.length > 0) {
+        await user.teams().attach(teams, null, trx)
+        await existingInvites.delete(trx)
+      }
+
+      await trx.commit()
+
       return user
     } catch (err) {
+      await trx.rollback()
       return response.status(err.status || 500).send(
         {
           error: {

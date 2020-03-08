@@ -8,6 +8,7 @@ class Invite extends Model {
     super.boot()
 
     this.addHook('afterCreate', 'InviteHook.invitation')
+    this.addHook('afterUpdate', 'InviteHook.confirmInvitation')
   }
 
   user () {

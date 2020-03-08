@@ -1,8 +1,10 @@
 'use strict'
 
 const User = use('App/Models/User')
+const Invite = use('App/Models/Invite')
 const Kue = use('Kue')
 const Env = use('Env')
+const Database = use('Database')
 const MailJob = use('App/Jobs/Mail')
 
 const InviteHook = exports = module.exports = {}
@@ -23,6 +25,7 @@ InviteHook.invitation = async (invite) => {
       subject: `You were invited to join the ${team.name}`
     }
   } else {
+    // Send an confirmation email with the team invite
     jobData = {
       data: { user, invited, email: invited.email, team, redirect_url: `${Env.get('SITE_URL')}/invitation` },
       templates: ['emails/invitation', 'emails/invitation-text'],
@@ -30,6 +33,23 @@ InviteHook.invitation = async (invite) => {
     }
   }
 
-  // Send an confirmation email with the team invite
   Kue.dispatch(MailJob.key, jobData, { attemps: 3 })
+}
+
+InviteHook.confirmInvitation = async (inviteInstance) => {
+  const trx = await Database.beginTransaction()
+  const invite = await Invite.find(inviteInstance.id)
+
+  try {
+    const invitedUser = await User.findBy('email', invite.email)
+
+    if (invitedUser && inviteInstance.dirty.confirmed && inviteInstance.confirmed) {
+      // Associating the invited user with a team
+      await invitedUser.teams().attach(invite.team_id, null, trx)
+      await invite.delete(trx)
+      await trx.commit()
+    }
+  } catch (err) {
+    await trx.rollback()
+  }
 }
