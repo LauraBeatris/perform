@@ -17,18 +17,18 @@ InviteHook.invitation = async (invite) => {
   let jobData = null
 
   // Verify if the invited user has an account
-  if (!invited) {
-    // Send an invitation to create an account and join the team
-    jobData = {
-      data: { user, email: invite.email, team, redirect_url: `${Env.get('SITE_URL')}/register` },
-      templates: ['emails/register_invite', 'emails/register_invite-text'],
+  if (invited) {
+     // Send an confirmation email with the team invite
+     jobData = {
+      data: { user, invited, email: invited.email, team, redirect_url: `${Env.get('SITE_URL')}/invitation` },
+      templates: ['emails/invitation', 'emails/invitation-text'],
       subject: `You were invited to join the ${team.name}`
     }
   } else {
-    // Send an confirmation email with the team invite
-    jobData = {
-      data: { user, invited, email: invited.email, team, redirect_url: `${Env.get('SITE_URL')}/invitation` },
-      templates: ['emails/invitation', 'emails/invitation-text'],
+     // Send an invitation to create an account and join the team
+     jobData = {
+      data: { user, email: invite.email, team, redirect_url: `${Env.get('SITE_URL')}/register` },
+      templates: ['emails/register_invite', 'emails/register_invite-text'],
       subject: `You were invited to join the ${team.name}`
     }
   }

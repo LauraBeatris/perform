@@ -1,5 +1,8 @@
 'use strict'
 
+const Role = use('Role')
+const Database = use('Database')
+
 /*
   Controller responsable for the teams of the ==> logged user <==
 */
@@ -22,15 +25,23 @@ class TeamController {
 
   async store ({ request, response, auth }) {
     const data = request.only(['name'])
+    const trx = await Database.beginTransaction()
 
     try {
-      const team = await auth.user.teams().create({
+      const team = await auth.user.teams().transacting(trx).create({
         ...data,
         user_id: auth.user.id
       })
+      const moderator = await Role.findBy('slug', 'moderator')
+      const teamMember = await auth.user.teamJoins().transacting(trx).where('team_id', team.id).first()
+      await teamMember.roles().attach([moderator.id], null, trx)
+
+      await trx.commit()
 
       return team
     } catch (err) {
+      await trx.rollback()
+
       return response.status(err.status || 500).send(
         {
           error: {

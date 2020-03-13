@@ -22,6 +22,25 @@ class User extends Model {
   teams () {
     return this.belongsToMany('App/Models/Team').pivotModel('App/Models/UserTeam')
   }
+
+  teamJoins() {
+    return this.hasMany('App/Models/UserTeam')
+  }
+
+  async is (expression) {
+    const teamMember = await this.teamJoins().where('team_id', this.currentTeam.id).first()
+    return teamMember.is(expression)
+  }
+
+  async can (expression) {
+    const teamMember = await this.teamJoins().where('team_id', this.currentTeam.id).first()
+    return teamMember.can(expression)
+  }
+
+  async scope (required) {
+    const teamMember = await this.teamJoins().where('team_id', this.currentTeam.id).first()
+    return teamMember.scope(required)
+  }
 }
 
 module.exports = User
