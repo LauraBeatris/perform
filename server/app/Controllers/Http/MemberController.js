@@ -3,26 +3,26 @@
 const UserTeam = use('App/Models/UserTeam')
 
 class MemberController {
-  async index({ request }) {
+  async index ({ request }) {
     const { page = 1 } = request.get()
     const members = await UserTeam.query()
-    .where('team_id', request.team.id)
-    .with('team')
-    .with('user')
-    .with('roles')
-    .paginate(page, 10)
+      .where('team_id', request.team.id)
+      .with('team')
+      .with('user')
+      .with('roles')
+      .paginate(page, 10)
 
-    return members;
+    return members
   }
 
-  async update({ params, request, response }) {
+  async update ({ params, request, response }) {
     const roles = request.input('roles')
     try {
       const member = await UserTeam.findOrFail(params.id)
       await member.roles().sync(roles)
       await member.loadMany(['roles', 'team', 'user'])
 
-      return member;
+      return member
     } catch (err) {
       return response.status(err.status || 500).send(
         {

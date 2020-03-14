@@ -12,9 +12,8 @@ class UpdateTeam {
   }
 
   get messages () {
-    return {
-      'name.string': 'The name needs to be a valid string'
-    }
+    const antl = this.ctx.antl
+    return antl.list('validation')
   }
 }
 

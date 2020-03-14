@@ -17,6 +17,7 @@
   "private": true,
   "dependencies": {
     "@adonisjs/ace": "^5.0.8",
+    "@adonisjs/antl": "^2.0.7",
     "@adonisjs/auth": "^3.0.7",
     "@adonisjs/bodyparser": "^2.0.5",
     "@adonisjs/cors": "^1.0.7",
@@ -28,8 +29,10 @@
     "@adonisjs/mail": "^3.0.10",
     "@adonisjs/redis": "^2.0.7",
     "@adonisjs/validator": "^5.0.6",
+    "@sentry/node": "^5.14.2",
     "adonis-acl": "^1.1.1",
     "adonis-kue": "^5.0.1",
+    "adonis-sentry": "^2.0.2",
     "pg": "^7.18.2"
   },
   "devDependencies": {
