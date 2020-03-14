@@ -1,9 +1,8 @@
 'use strict'
 
-class Invite {
-  get validateAll() {
-    return true;
-
+class UpdateInvite {
+  get validateAll () {
+    return true
   }
 
   get rules () {
@@ -13,11 +12,11 @@ class Invite {
     }
   }
 
-  get messages() {
+  get messages () {
     return {
 
     }
   }
 }
 
-module.exports = Invite
+module.exports = UpdateInvite

@@ -1,6 +1,6 @@
 'use strict'
 
-class CreateUser {
+class CreateTask {
   get validateAll () {
     return true
   }
@@ -8,8 +8,8 @@ class CreateUser {
   get rules () {
     return {
       name: 'required|string',
-      email: 'required|email|unique:users',
-      password: 'required|min:6|max:30'
+      user_id: 'required|number|integer',
+      description: 'string'
     }
   }
 
@@ -20,4 +20,4 @@ class CreateUser {
   }
 }
 
-module.exports = CreateUser
+module.exports = CreateTask

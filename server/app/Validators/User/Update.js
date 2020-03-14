@@ -1,9 +1,8 @@
 'use strict'
 
-class User {
-  get validateAll() {
-    return true;
-
+class UpdateUser {
+  get validateAll () {
+    return true
   }
 
   get rules () {
@@ -14,11 +13,11 @@ class User {
     }
   }
 
-  get messages() {
+  get messages () {
     return {
 
     }
   }
 }
 
-module.exports = User
+module.exports = UpdateUser

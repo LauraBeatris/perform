@@ -1,9 +1,8 @@
 'use strict'
 
-class Session {
-  get validateAll() {
-    return true;
-
+class CreateSession {
+  get validateAll () {
+    return true
   }
 
   get rules () {
@@ -13,11 +12,11 @@ class Session {
     }
   }
 
-  get messages() {
+  get messages () {
     return {
 
     }
   }
 }
 
-module.exports = Session
+module.exports = CreateSession

@@ -1,8 +1,8 @@
 'use strict'
 
-class Team {
-  get validateAll() {
-    return true;
+class CreateTeam {
+  get validateAll () {
+    return true
   }
 
   get rules () {
@@ -19,4 +19,4 @@ class Team {
   }
 }
 
-module.exports = Team
+module.exports = CreateTeam

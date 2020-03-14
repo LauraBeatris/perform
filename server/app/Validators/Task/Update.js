@@ -1,14 +1,15 @@
 'use strict'
 
-class CreateInvite {
+class UpdateTask {
   get validateAll () {
     return true
   }
 
   get rules () {
     return {
-      invites: 'required|array',
-      'invites.*': 'required|email'
+      name: 'string',
+      user_id: 'number|integer',
+      description: 'string'
     }
   }
 
@@ -19,4 +20,4 @@ class CreateInvite {
   }
 }
 
-module.exports = CreateInvite
+module.exports = UpdateTask

@@ -1,9 +1,8 @@
 'use strict'
 
-class Project {
-  get validateAll() {
-    return true;
-
+class UpdateProject {
+  get validateAll () {
+    return true
   }
 
   get rules () {
@@ -12,11 +11,11 @@ class Project {
     }
   }
 
-  get messages() {
+  get messages () {
     return {
 
     }
   }
 }
 
-module.exports = Project
+module.exports = UpdateProject
