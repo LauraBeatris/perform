@@ -1,0 +1,22 @@
+import styled, { css } from 'styled-components';
+
+export const Container = styled.div`
+    ${({ withBorder }) =>
+        withBorder &&
+        css`
+            border: 1px solid ${({ theme }) => theme.colors.white};
+        `}
+    border-radius: 10px;
+    width: 148px;
+    height: 40px;
+
+    display: flex;
+`;
+
+export const Text = styled.strong`
+    color: ${({ theme }) => theme.colors.yellow};
+    font-weight: bold;
+    font-size: ${({ theme }) => theme.fontSizes.md};
+    margin: auto;
+    text-transform: uppercase;
+`;

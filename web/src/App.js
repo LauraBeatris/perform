@@ -1,11 +1,18 @@
 import React from 'react';
-import Header from '~/components/Header'
+import { ThemeProvider } from 'styled-components';
+import Routes from '~/routes';
+
+import GlobalStyles from '~/styles/global';
+import theme from '~/styles/theme';
 
 function App() {
     return (
-        <div>
-            <Header>Perform</Header>
-        </div>
+        <>
+            <GlobalStyles />
+            <ThemeProvider theme={theme}>
+                <Routes />
+            </ThemeProvider>
+        </>
     );
 }
 
