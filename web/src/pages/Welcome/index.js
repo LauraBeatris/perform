@@ -1,13 +1,15 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
+import { Link } from 'react-router-dom';
+import Container from '~/styles/components/Container';
 import Logo from '~/components/Logo';
 import Button from '~/components/Button';
-import { Container, Content, Title, Text } from './styles';
+import { Content, Title, Text } from './styles';
 
 export default function Welcome() {
     return (
-        <Container backgroundColor="purple" padding="2">
+        <Container type="withDecoration" backgroundColor="purple" padding="2">
             <Content>
                 <Logo marginBottom={3} />
                 <Title
@@ -26,14 +28,16 @@ export default function Welcome() {
                 >
                     A agile structure to organize your team and projects
                 </Text>
-                <Button
-                    backgroundColor="white"
-                    color="purple"
-                    fontSize="sm"
-                    icon={<FaArrowRight />}
-                >
-                    Get Started
-                </Button>
+                <Link style={{ textDecoration: 'none' }} to="/signin">
+                    <Button
+                        backgroundColor="white"
+                        color="purple"
+                        fontSize="sm"
+                        icon={<FaArrowRight />}
+                    >
+                        Get Started
+                    </Button>
+                </Link>
             </Content>
         </Container>
     );

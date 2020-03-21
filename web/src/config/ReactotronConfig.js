@@ -2,7 +2,6 @@ import Reactotron from 'reactotron-react-js';
 import { reactotronRedux } from 'reactotron-redux';
 import ReactotronSaga from 'reactotron-redux-saga';
 
-console.log('HEY');
 if (process.env.NODE_ENV === 'development') {
     const tron = Reactotron.configure()
         .use(reactotronRedux())

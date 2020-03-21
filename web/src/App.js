@@ -1,12 +1,14 @@
-import '~/config/ReactotronConfig';
-
 import React from 'react';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import Helmet from 'react-helmet';
 import { ThemeProvider } from 'styled-components';
 
 import Routes from '~/routes';
 import GlobalStyles from '~/styles/global';
 import theme from '~/styles/theme';
+
+import { store, persistor } from '~/store';
 
 function App() {
     return (
@@ -18,9 +20,13 @@ function App() {
                 />
             </Helmet>
             <GlobalStyles />
-            <ThemeProvider theme={theme}>
-                <Routes />
-            </ThemeProvider>
+            <Provider store={store}>
+                <PersistGate persistor={persistor}>
+                    <ThemeProvider theme={theme}>
+                        <Routes />
+                    </ThemeProvider>
+                </PersistGate>
+            </Provider>
         </>
     );
 }

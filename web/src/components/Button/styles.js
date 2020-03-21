@@ -1,27 +1,23 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { color, fontSize } from 'styled-system';
 
-export const Container = styled.button`
+export const StyledButton = styled.button`
     ${color}
     ${fontSize}
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
+    padding: 0px 10px;
     min-width: 150px;
     min-height: 52px;
     border-radius: 10px;
     border: none;
     font-weight: bold;
-
-    ${({ hasIcon }) =>
-        hasIcon &&
-        css`
-            svg {
-                margin-left: 4px;
-            }
-        `}
 `;
 
-export const Text = styled.span``;
+export const Text = styled.span`
+    justify-self: center;
+    flex: 1;
+`;
