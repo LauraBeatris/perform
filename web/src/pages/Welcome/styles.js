@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { color, fontSize, layout } from 'styled-system';
+import { color, fontSize, layout, space } from 'styled-system';
 import BackgroundDecoration from '~/assets/bg_decoration.png';
 
 export const Container = styled.div.attrs({
     className: 'bg-welcome',
 })`
     ${color}
+    ${space}
     min-width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -21,12 +22,15 @@ export const Title = styled.h1`
     ${color}
     ${fontSize}
     ${layout}
-    font-weight: bold;
+    ${space}
 `;
 
 export const Text = styled.p`
     ${color}
     ${fontSize}
     ${layout}
-    opacity: 0.89;
+    ${space}
+    opacity: 0.79;
+    font-weight: 500;
+    line-height: 28px;
 `;

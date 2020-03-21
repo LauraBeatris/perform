@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { Container, Text } from './styles';
 
-export default function Logo({ withBorder }) {
+export default function Logo({ withBorder, margin, marginBottom }) {
     return (
-        <Container withBorder={withBorder}>
+        <Container withBorder={withBorder} margin={margin} marginBottom={marginBottom}>
             <Text>Perform</Text>
         </Container>
     );

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { space } from 'styled-system'
 
 export const Container = styled.div`
     ${({ withBorder }) =>
@@ -9,6 +10,7 @@ export const Container = styled.div`
     border-radius: 10px;
     width: 148px;
     height: 40px;
+    ${space}
 
     display: flex;
 `;

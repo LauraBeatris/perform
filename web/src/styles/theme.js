@@ -11,7 +11,9 @@ export default {
         111: '111px',
     },
     fontSizes: {
+        sm: '18px',
         md: '24px',
         lg: '40px',
     },
+    spaces: [0, 4, 8, 16, 32, 62]
 };
