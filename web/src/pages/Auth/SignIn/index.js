@@ -4,6 +4,9 @@ import { FaArrowRight } from 'react-icons/fa';
 import { Form } from '@unform/web';
 import { Link } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
+
+import { UserCreators } from '~/store/ducks/user';
 import { Content, Title, Links, LinkItem } from '../styles';
 import Logo from '~/components/Logo';
 import Button from '~/components/Button';
@@ -11,8 +14,11 @@ import Input from '~/components/Input';
 import Container from '~/styles/components/Container';
 
 export default function SignIn() {
+    const dispatch = useDispatch();
+
     function handleSubmit(data) {
-        console.tron.log(data);
+        const { email, password } = data;
+        dispatch(UserCreators.loginRequest(email, password));
     }
 
     return (

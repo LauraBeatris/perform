@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { space } from 'styled-system'
+import { space } from 'styled-system';
 
 export const Container = styled.div`
     ${({ withBorder }) =>
@@ -16,6 +16,7 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.strong`
+    font-family: 'Montserrat', 'Roboto', sans-serif;
     color: ${({ theme }) => theme.colors.yellow};
     font-weight: bold;
     font-size: ${({ theme }) => theme.fontSizes.md};
