@@ -1,21 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
-import addToast from '~/helpers/addToast'
+import { store } from '~/store'
 
 export default function GuestRoute({component: Component, ...rest}) {
-    const { signedIn } = useSelector(state => state.user);
-
-    useEffect(() => {
-        if (signedIn) addToast('You have to sign out in order to access this page', {
-            appearance: 'error',
-            autoDismiss: true,
-            autoDismissTimeout: 2500,
-            pauseOnHover: false,
-        })
-      }, [signedIn])
+    const { signedIn } = store.getState().user
 
     return (
         !signedIn ?

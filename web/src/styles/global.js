@@ -23,4 +23,16 @@ export default createGlobalStyle`
     button {
         cursor: pointer;
     }
+
+    body::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    body::-webkit-scrollbar-track {
+        background: #eee;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background: #5748ad;
+    }
 `;

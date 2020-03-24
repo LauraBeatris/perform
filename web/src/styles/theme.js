@@ -6,6 +6,7 @@ export default {
         dark: '#2b2929',
         'dark-secondary': '#2B2929',
         grayLight: '#999999',
+        primary: '#DFE7ED',
     },
     sizes: [0, 321],
     height: {
