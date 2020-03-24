@@ -1,6 +1,8 @@
 import React from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
 
+import PrivateRoute from './private'
+import GuestRoute from './guest'
 import history from './history';
 
 import Welcome from '~/pages/Welcome';
@@ -14,11 +16,11 @@ export default function Routes() {
     return (
         <Router history={history}>
             <Switch>
-                <Route path="/dashboard" component={Dashboard} />
-                <Route path="/recover" component={Recover} />
-                <Route path="/signup" component={SignUp} />
-                <Route path="/signin" component={SignIn} />
-                <Route path="/" exact component={Welcome} />
+                <PrivateRoute path="/dashboard" component={Dashboard} />
+                <GuestRoute path="/recover" component={Recover} />
+                <GuestRoute path="/signup" component={SignUp} />
+                <GuestRoute path="/signin" component={SignIn} />
+                <GuestRoute path="/" exact component={Welcome} />
             </Switch>
         </Router>
     );
