@@ -1,9 +1,9 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import { Form } from '@unform/web';
-
-import { Content, Title, Back } from '../styles';
+import { Link } from 'react-router-dom';
+import { Content, Title, Links, LinkItem } from '../styles';
 import Logo from '~/components/Logo';
 import Button from '~/components/Button';
 import Input from '~/components/Input';
@@ -24,9 +24,6 @@ export default function Recover() {
                 backgroundColor="purple"
                 padding="2"
             >
-                <Back>
-                    <FaArrowLeft /> Back
-                </Back>
                 <Content>
                     <Logo marginBottom="3" />
 
@@ -68,11 +65,16 @@ export default function Recover() {
                             placeholder="Confirm your new password"
                             backgroundColor="white"
                             height={40}
-                            marginBottom="4"
+                            marginBottom="3"
                             padding="3"
                             fontSize="2xs"
                             color="dark-secondary"
                         />
+                        <Links marginBottom="3">
+                            <LinkItem color="dark-secondary">
+                                <Link to="/signup">Back to sign in</Link>
+                            </LinkItem>
+                        </Links>
                         <Button
                             icon={<FaArrowRight />}
                             backgroundColor="white"

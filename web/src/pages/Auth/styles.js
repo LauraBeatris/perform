@@ -67,8 +67,8 @@ export const Links = styled.ul`
 `;
 
 export const LinkItem = styled.li`
-    font-size: ${({ theme }) => theme.fontSizes.xs}
-    font-weight: bold;
+    font-size: ${({ theme }) => theme.fontSizes['2xs']};
+    font-weight: 400;
     text-transform: lowercase;
 
     a {
