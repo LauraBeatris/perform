@@ -32,3 +32,14 @@ export function* login(data) {
             );
     }
 }
+
+export function* logout() {
+    history.push('/signin');
+    addToast('Successfully logout', {
+        appearance: 'success',
+        autoDismiss: true,
+        pauseOnHover: false,
+    })
+
+    yield put(UserCreators.logoutSuccess())
+}

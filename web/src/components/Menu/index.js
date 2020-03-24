@@ -1,9 +1,25 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux'
 import { withTheme } from 'styled-components'
 import { FaUsers, FaTasks } from 'react-icons/fa'
 import { AiFillProject, AiOutlineLogout } from 'react-icons/ai'
 
 import { Container, MenuToggle, ListItems, Item } from './styles';
+import { UserCreators } from '~/store/ducks/user'
+
+function SignOut({children}) {
+    const dispatch = useDispatch()
+
+    function handleClick() {
+        dispatch(UserCreators.logoutRequest())
+    }
+
+    return (
+        <button onClick={handleClick} style={{background: 'none', border: 'none', display: 'inherit'}}>
+            {children}
+        </button>
+    )
+}
 
 export function Menu({theme}) {
   const menuRef = useRef(null)
@@ -44,8 +60,10 @@ export function Menu({theme}) {
                 <strong>My Tasks</strong>
             </Item>
             <Item>
-                <AiOutlineLogout size={theme.fontSizes.lg} color={theme.colors.grayLight}/>
-                <strong>Sign out</strong>
+                <SignOut>
+                    <AiOutlineLogout size={theme.fontSizes.lg} color={theme.colors.grayLight}/>
+                        <strong>Sign out</strong>
+                    </SignOut>
             </Item>
         </ListItems>
     </Container>
