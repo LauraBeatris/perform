@@ -3,7 +3,7 @@
 const BaseExceptionHandler = use('BaseExceptionHandler')
 const Env = use('Env')
 const Sentry = use('Sentry')
-const Youch = require('Youch')
+const Youch = require('youch')
 
 class ExceptionHandler extends BaseExceptionHandler {
   async handle (error, { request, response }) {
