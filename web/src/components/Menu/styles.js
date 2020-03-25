@@ -1,13 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { strokeAnimation, strokeAnimationReverse } from '~/styles/animations/svg'
+import {
+    strokeAnimation,
+    strokeAnimationReverse,
+} from '~/styles/animations/svg';
 
 export const Container = styled.nav`
     display: flex;
     position: fixed;
-    background: ${({theme}) => theme.colors.white};
-    box-shadow: 1px 2px 4px -4px rgba(0, 0, 0, .7);
-    transition: width .3s ease-in-out;
+    background: ${({ theme }) => theme.colors.white};
+    box-shadow: 1px 2px 4px -4px rgba(0, 0, 0, 0.7);
+    transition: width 0.3s ease-in-out;
 
     @media screen and (max-width: 800px) {
         bottom: 0;
@@ -22,8 +25,10 @@ export const Container = styled.nav`
         flex-direction: column;
     }
 
-    strong {
-        display: none;
+    li,
+    li a,
+    li button {
+        flex-direction: column;
     }
 
     &.expanded {
@@ -33,13 +38,19 @@ export const Container = styled.nav`
             width: 150px;
         }
 
+        li,
+        li a,
+        li button {
+            flex-direction: row;
+        }
+
         strong {
             display: inline-block;
             margin-left: 8px;
             font-size: 18px;
             align-self: center;
-            color: ${({theme}) => theme.colors['dark-secondary']};
-            font-weight: bold;
+            color: ${({ theme }) => theme.colors.gray};
+            font-weight: 500;
         }
     }
 `;
@@ -55,7 +66,7 @@ export const MenuToggle = styled.div`
 
     svg {
         fill: none;
-        stroke: ${({theme}) => theme.colors.dark};
+        stroke: ${({ theme }) => theme.colors['dark-secondary']};
         stroke-width: 7px;
         stroke-linecap: round;
         stroke-linejoin: round;
@@ -68,7 +79,8 @@ export const MenuToggle = styled.div`
                 opacity: 1;
                 stroke-dashoffset: 221;
                 stroke-dasharray: 46 249;
-                transition: stroke-dashoffset .12s linear .2s, stroke-dasharray .12s linear .2s, opacity 0s linear .2s;
+                transition: stroke-dashoffset 0.12s linear 0.2s,
+                    stroke-dasharray 0.12s linear 0.2s, opacity 0s linear 0.2s;
             }
 
             &:nth-of-type(2) {
@@ -87,12 +99,14 @@ export const MenuToggle = styled.div`
 
         &:checked {
             + svg {
-                    use {
+                use {
                     &:nth-of-type(1) {
                         stroke-dashoffset: 175;
                         stroke-dasharray: 0 295;
                         opacity: 0;
-                        transition: stroke-dashoffset .07s linear .07s, stroke-dasharray .07s linear .07s, opacity 0s linear .14s;
+                        transition: stroke-dashoffset 0.07s linear 0.07s,
+                            stroke-dasharray 0.07s linear 0.07s,
+                            opacity 0s linear 0.14s;
                     }
                     &:nth-of-type(2) {
                         animation: ${strokeAnimation} 1.2s ease-out forwards;
@@ -101,29 +115,47 @@ export const MenuToggle = styled.div`
             }
         }
     }
-
-
-`
+`;
 
 export const ListItems = styled.ul`
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: row;
+
     list-style: none;
-    padding: ${({theme}) => theme.spaces[3] + 'px'};
+    padding: ${({ theme }) => `${theme.spaces[3]}px`};
 
-
-    @media screen and (min-width: 800px) {
+    @media screen and (min-width: 1000px) {
         flex-direction: column;
+        justify-content: center;
     }
-`
+`;
 
 export const Item = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+
+    &#logo {
+        display: none;
+
+        @media screen and (min-width: 1000px) {
+            display: initial;
+        }
+    }
+
+    a,
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        flex-direction: column;
+        text-align: center;
+    }
 
     @media screen and (min-width: 800px) {
         margin: 16px 0;
@@ -135,8 +167,63 @@ export const Item = styled.li`
         }
     }
 
-    svg {
-        transition: unset;
-    }
-`
+    strong {
+        display: none;
 
+        @media screen and (min-width: 1000px) {
+            display: initial;
+        }
+    }
+
+    svg,
+    strong {
+        transition: color 0.3s ease-in-out;
+    }
+
+    strong,
+    a,
+    button,
+    svg {
+        color: #999;
+        font-weight: lighter;
+        font-size: ${({ theme }) => theme.fontSizes['2xs']};
+    }
+
+    &:hover {
+        svg,
+        strong {
+            color: ${({ theme }) => theme.colors.purple};
+        }
+    }
+
+    ${({ active }) =>
+        active &&
+        css`
+            strong,
+            svg {
+                color: ${({ theme }) => theme.colors.purple};
+            }
+
+            strong,
+            a {
+                font-weight: bold;
+            }
+        `}
+`;
+
+export const Logo = styled.h1`
+    display: none;
+
+    @media screen and (min-width: 1000px) {
+        display: initial;
+    }
+
+    color: ${({ theme }) => theme.colors.yellow};
+    border: 1px solid #eee;
+    border-radius: 4px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: ${({ theme }) => theme.fontSizes.xl};
+    text-align: center;
+    padding: 0 10px;
+`;

@@ -11,12 +11,12 @@ export default function Welcome() {
     return (
         <Container type="withDecoration" backgroundColor="purple" padding="2">
             <Content>
-                <Logo marginBottom={3} />
+                <Logo marginBottom="3" />
                 <Title
                     color="white"
                     fontSize="lg"
                     width={['100%', 321]}
-                    marginBottom={3}
+                    marginBottom="3"
                 >
                     Track Your Work & Improve Your Performance
                 </Title>

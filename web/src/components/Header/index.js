@@ -1,25 +1,45 @@
 import React from 'react';
-import { withTheme } from 'styled-components'
-import { MdNotifications, MdMenu } from 'react-icons/md'
+import PropTypes from 'prop-types';
+import { withTheme } from 'styled-components';
 
-import Box from '~/styles/components/Box'
-import { Container,  UserName, UserImage } from './styles';
+import {
+    Container,
+    NotificationWrapper,
+    Notification,
+    Badge,
+    ProfileButton,
+} from './styles';
+import Dots from '~/assets/dots.png';
 
-export function Header({theme}) {
-  return (
-    <Container>
-        {/* User Profile Item */}
-        <Box marginLeft="auto" backgroundColor="white" display="flex" alignItems="center" padding="2">
-            <UserImage src="https://buzz-caribbean.com/app/uploads/2020/03/Bill-Gates-Reddit-AMA-1024x597.jpg" alt="User Profile" title="User"/>
-            <UserName>laurabeatriserafim@gmail.com</UserName>
-            <MdMenu color={theme.colors.dark} size={theme.fontSizes.md} style={{marginLeft: theme.spaces[2] + 'px', cursor: 'pointer'}} />
-        </Box>
-        {/* Notifications Box */}
-        <Box marginLeft={theme.spaces[3]} backgroundColor="white" display="flex" alignItems="center" padding="2">
-            <MdNotifications color="#999" size={theme.fontSizes.md} style={{cursor: 'pointer'}}/>
-        </Box>
-    </Container>
-  );
+export function Header({ theme }) {
+    return (
+        <Container>
+            <nav>
+                <NotificationWrapper>
+                    <Notification />
+                    <Badge>5</Badge>
+                </NotificationWrapper>
+
+                <ProfileButton>
+                    <img
+                        id="user"
+                        src="https://i.pinimg.com/originals/a8/91/12/a8911210d7ecccfc026e69cb8798d231.jpg"
+                        alt="User Profile"
+                        aria-hidden="true"
+                    />
+                    <img id="dots" alt="Button Dots" src={Dots} />
+                </ProfileButton>
+            </nav>
+        </Container>
+    );
 }
 
-export default withTheme(Header)
+Header.propTypes = {
+    theme: PropTypes.shape({
+        fontSizes: PropTypes.array,
+        colors: PropTypes.array,
+        spaces: PropTypes.array,
+    }).isRequired,
+};
+
+export default withTheme(Header);

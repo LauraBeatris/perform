@@ -1,29 +1,66 @@
 import styled from 'styled-components';
+import { IoMdNotificationsOutline } from 'react-icons/io';
 
 export const Container = styled.header`
     display: flex;
     justify-content: space-between;
-    padding: ${({theme}) => `${theme.spaces[4]}px`}
+    padding: ${({ theme }) => `${theme.spaces[4]}px`};
+
+    nav {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+    }
 `;
 
-export const UserName = styled.strong`
-    color: ${({theme}) => theme.colors.dark};
-    font-weight: bold;
-    font-size: calc(${({ theme }) => theme.fontSizes.xs} + 2px);
-    margin: 0 ${({theme}) => `${theme.spaces[2]}px`};
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 150px;
+export const NotificationWrapper = styled.div`
+    position: relative;
 `;
 
-export const UserImage = styled.img`
-    height: 30px;
-    width: 30px;
+export const Notification = styled(IoMdNotificationsOutline)`
+    color: ${({ theme }) => theme.colors['dark-secondary']};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+
+    display: flex;
+    align-items: center;
+`;
+
+export const Badge = styled.span`
+    background: ${({ theme }) => theme.colors.warning};
+    color: ${({ theme }) => theme.colors.white};
     border-radius: 50%;
-    box-shadow: 1px 2px 6px -2px rgba(0, 0, 0, 0.7);
-    border: 2px solid white;
-`
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    position: absolute;
+    right: 0;
+    top: -5px;
+    width: 24px;
+    height: 24px;
+    outline: 3px solid #eee;
+`;
+
+export const ProfileButton = styled.button`
+    background: none;
+    display: flex;
+    border: none;
+    margin-left: 24px;
+    align-items: center;
+    margin-bottom: 5px;
+
+    img#user {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+    }
+
+    img#dots {
+        height: 16px;
+    }
+
+    img + img {
+        margin-left: 8px;
+    }
+`;
