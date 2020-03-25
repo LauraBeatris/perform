@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 
 import {
@@ -11,7 +10,7 @@ import {
 } from './styles';
 import Dots from '~/assets/dots.png';
 
-export function Header({ theme }) {
+export function Header() {
     return (
         <Container>
             <nav>
@@ -33,13 +32,5 @@ export function Header({ theme }) {
         </Container>
     );
 }
-
-Header.propTypes = {
-    theme: PropTypes.shape({
-        fontSizes: PropTypes.array,
-        colors: PropTypes.array,
-        spaces: PropTypes.array,
-    }).isRequired,
-};
 
 export default withTheme(Header);

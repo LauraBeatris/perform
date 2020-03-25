@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    height: 100%;
     background: #eee;
 `;
 
 export const Content = styled.main`
-    padding: 0 2rem;
+    padding: 5rem 2rem 10rem;
+    min-height: 100vh;
+
     @media screen and (min-width: 800px) {
+        height: 100vh;
         margin-left: 5rem;
-        padding: 0 5rem;
+        padding: 5rem 5rem;
+        min-height: 100vh;
     }
 `;

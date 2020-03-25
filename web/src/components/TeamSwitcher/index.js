@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { Container } from './styles';
+import { Container, Team } from './styles';
 
 export default function TeamSwitcherMenu() {
-    return <Container />;
+    useEffect(() => {}, []);
+
+    return (
+        <Container>
+            <Team>Example</Team>
+            <Team>Example</Team>
+            <Team>Example</Team>
+            <Team>Example</Team>
+        </Container>
+    );
 }

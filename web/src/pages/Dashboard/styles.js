@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import { shake } from '~/styles/animations';
 
 export const Container = styled.div`
-    @media screen and (min-width: 800px) {
-        margin-left: 5rem;
-    }
+    min-width: 100%;
+    min-height: 100%;
+
+    display: flex;
+    flex-direction: column;
 `;
 
 export const Message = styled.h1`

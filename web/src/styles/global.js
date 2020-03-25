@@ -25,7 +25,7 @@ export default createGlobalStyle`
     }
 
     body::-webkit-scrollbar {
-        width: 5px;
+        width: 10px;
     }
 
     body::-webkit-scrollbar-track {
@@ -34,5 +34,6 @@ export default createGlobalStyle`
 
     body::-webkit-scrollbar-thumb {
         background: #5748ad;
+        border-radius: 4px;
     }
 `;

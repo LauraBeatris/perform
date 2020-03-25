@@ -3,23 +3,28 @@ import { useSelector } from 'react-redux';
 
 import { Container, Message } from './styles';
 import api from '~/services/api';
+import TeamSwitcherDashboard from '~/components/TeamSwitcher/Dashboard';
 
 export default function Dashboard() {
     const { name } = useSelector(state => state.user);
+
     useEffect(() => {
         api.getTeams();
     }, []);
 
     return (
-        <Message>
-            Hi
-            <br />
-            <span>
-                {name}{' '}
-                <span id="emoji" role="img" aria-label="Shake Hands">
-                    👋
+        <Container>
+            <Message>
+                Hi
+                <br />
+                <span>
+                    {name}{' '}
+                    <span id="emoji" role="img" aria-label="Shake Hands">
+                        👋
+                    </span>
                 </span>
-            </span>
-        </Message>
+            </Message>
+            <TeamSwitcherDashboard marginTop="5" />
+        </Container>
     );
 }
