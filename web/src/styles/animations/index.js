@@ -23,3 +23,13 @@ export const grow = width => keyframes`
         width: ${width}
     }
 `;
+
+export const fadein = keyframes`
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+`;

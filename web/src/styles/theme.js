@@ -1,4 +1,5 @@
 export default {
+    breakpoints: ['40em', '52em', '64em'],
     colors: {
         white: '#fff',
         purple: '#5748ad',

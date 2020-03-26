@@ -11,9 +11,14 @@ class Api {
         this.api.interceptors.request.use(
             config => {
                 const { token } = store.getState().user;
+                const { active } = store.getState().teams;
 
                 if (token) {
                     config.headers.Authorization = `Bearer ${token}`;
+                }
+
+                if (active) {
+                    config.headers.TEAM = active.slug;
                 }
 
                 return config;

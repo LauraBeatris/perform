@@ -14,14 +14,21 @@ import Dashboard from '~/pages/Dashboard';
 import Projects from '~/pages/Projects';
 import Tasks from '~/pages/Tasks';
 import Layout from '~/layouts/Main';
+import TeamsList from '~/pages/Teams/List';
 
 export default function Routes() {
     return (
         <Router history={history}>
             <Switch>
-                <Route exact path={['/tasks', '/projects', '/dashboard']}>
+                {/* Dashboard and list of resource pages */}
+                <Route
+                    exact
+                    path={['/tasks', '/projects', '/dashboard', '/teams']}
+                >
                     <Layout>
                         <Switch>
+                            <PrivateRoute path="/teams" component={TeamsList} />
+
                             <PrivateRoute path="/tasks" component={Tasks} />
                             <PrivateRoute
                                 path="/projects"
