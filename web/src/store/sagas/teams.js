@@ -23,3 +23,24 @@ export function* listTeams() {
         );
     }
 }
+
+export function* createTeam({ data }) {
+    try {
+        const team = yield api.createTeam(data);
+        yield put(TeamCreators.createTeamSuccess(team));
+        yield put(TeamCreators.closeCreateTeamModal());
+
+        addToast(`${team.name} was successfully created!`, {
+            appearance: 'success',
+            autoDismiss: true,
+            pauseOnHover: false,
+        });
+    } catch (err) {
+        yield put(TeamCreators.createTeamFailure(err));
+        addToast('Error trying to create a team, please try again.', {
+            appearance: 'error',
+            autoDismiss: true,
+            pauseOnHover: false,
+        });
+    }
+}

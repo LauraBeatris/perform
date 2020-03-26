@@ -9,6 +9,11 @@ export const { Types, Creators } = createActions({
     teamsSuccess: ['data'],
     teamsFailure: ['error'],
     selectTeam: ['team'],
+    openCreateTeamModal: null,
+    closeCreateTeamModal: null,
+    createTeamRequest: ['data'],
+    createTeamSuccess: ['team'],
+    createTeamFailure: ['error'],
 });
 
 export const TeamTypes = Types;
@@ -22,6 +27,7 @@ const INITIAL_STATE = {
     data: [],
     error: null,
     active: JSON.parse(localStorage.getItem('perform:activeTeam')) || null,
+    createTeamModal: false,
 };
 
 export const teamsSuccess = (state, { data }) => {
@@ -56,10 +62,34 @@ export const selectTeam = (state, { team }) => {
     });
 };
 
+export const openCreateTeamModal = (state, _) => {
+    return produce(state, draft => {
+        draft.createTeamModal = true;
+        return draft;
+    });
+};
+
+export const closeCreateTeamModal = (state, _) => {
+    return produce(state, draft => {
+        draft.createTeamModal = false;
+        return draft;
+    });
+};
+
+export const createTeam = (state, { team }) => {
+    return produce(state, draft => {
+        draft.data = [...draft.data, team];
+        return draft;
+    });
+};
+
 const reducer = createReducer(INITIAL_STATE, {
     [Types.TEAMS_SUCCESS]: teamsSuccess,
     [Types.TEAMS_FAILURE]: teamsFailure,
     [Types.SELECT_TEAM]: selectTeam,
+    [Types.OPEN_CREATE_TEAM_MODAL]: openCreateTeamModal,
+    [Types.CLOSE_CREATE_TEAM_MODAL]: closeCreateTeamModal,
+    [Types.CREATE_TEAM_SUCCESS]: createTeam,
 });
 
 export default reducer;

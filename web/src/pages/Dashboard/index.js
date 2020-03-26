@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
     Header,
@@ -9,9 +9,15 @@ import {
     Options,
     StyledLink,
 } from './styles';
+import { TeamCreators } from '~/store/ducks/teams';
 
 export default function DashboardPage() {
     const { name } = useSelector(state => state.user);
+    const dispatch = useDispatch();
+
+    function openCreateTeamModal() {
+        dispatch(TeamCreators.openCreateTeamModal());
+    }
 
     return (
         <Container>
@@ -45,12 +51,12 @@ export default function DashboardPage() {
                     </span>
                 </Text>
                 <StyledLink
-                    to="/teams/create"
                     backgroundColor="inherit"
                     fontSize="lg"
                     color="dark"
                     marginTop="4"
                     textAlign="center"
+                    onClick={openCreateTeamModal}
                 >
                     Create a team
                 </StyledLink>

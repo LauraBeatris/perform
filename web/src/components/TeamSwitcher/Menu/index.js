@@ -24,6 +24,10 @@ export default function TeamSwitcherMenu({ active }) {
         dispatch(TeamCreators.selectTeam(team));
     }
 
+    function openCreateTeamModal() {
+        dispatch(TeamCreators.openCreateTeamModal());
+    }
+
     return (
         <Container active={active}>
             <Content>
@@ -35,10 +39,10 @@ export default function TeamSwitcherMenu({ active }) {
                 <div className="row">
                     <Title>Teams</Title>
                     <AddButton
-                        to="/teams/create"
                         title="Add a team"
                         backgroundColor="purple"
                         color="white"
+                        onClick={openCreateTeamModal}
                     >
                         +
                     </AddButton>

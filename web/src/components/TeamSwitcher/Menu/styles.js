@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import { darken } from 'polished';
 import { space, color, fontSize } from 'styled-system';
-import { Link } from 'react-router-dom';
 
 import { fadein } from '~/styles/animations/index';
 
@@ -125,11 +124,11 @@ export const Title = styled.h3`
     flex: 1;
 `;
 
-export const AddButton = styled(Link)`
+export const AddButton = styled.button`
     ${color}
     box-shadow: 2px 4px 6px -4px rgba(0, 0, 0, 0.5);
     border-radius: 50%;
-    text-decoration: none;
+    border: none;
 
     font-weight: bold;
     font-size: ${({ theme }) => theme.fontSizes.md};

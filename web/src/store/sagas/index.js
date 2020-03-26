@@ -6,7 +6,7 @@ import { login, logout } from './user';
 
 /* Team Sagas */
 import { TeamTypes } from '../ducks/teams';
-import { listTeams } from './teams';
+import { listTeams, createTeam } from './teams';
 
 export default function* rootSaga() {
     return yield all([
@@ -14,5 +14,6 @@ export default function* rootSaga() {
         takeLatest(UserTypes.LOGOUT_REQUEST, logout),
 
         takeLatest(TeamTypes.TEAMS_REQUEST, listTeams),
+        takeLatest(TeamTypes.CREATE_TEAM_REQUEST, createTeam),
     ]);
 }
