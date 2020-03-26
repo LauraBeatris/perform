@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Container, Box, TeamBox, getColor, Message } from './styles';
@@ -11,7 +10,7 @@ export default function TeamBoxSwitcherDashboard() {
 
     useEffect(() => {
         dispatch(TeamCreators.teamsRequest());
-    }, []);
+    }, [dispatch]);
 
     return (
         <Container>

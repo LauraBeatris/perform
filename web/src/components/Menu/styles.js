@@ -139,6 +139,7 @@ export const Item = styled.li`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    position: relative;
 
     &#logo {
         display: none;

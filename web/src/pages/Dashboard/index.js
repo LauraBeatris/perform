@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 
 import { Container, Message } from './styles';
 import api from '~/services/api';
-import TeamSwitcherDashboard from '~/components/TeamSwitcher/Dashboard';
+import TeamSwitcherDashboard from '~/components/TeamSwitcher/Box';
 
-export default function Dashboard() {
+export default function DashboardPage() {
     const { name } = useSelector(state => state.user);
 
     useEffect(() => {

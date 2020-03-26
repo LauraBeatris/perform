@@ -13,3 +13,13 @@ export const shake = keyframes`
         transform: rotate(0deg)
     }
 `;
+
+export const grow = width => keyframes`
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: ${width}
+    }
+`;
