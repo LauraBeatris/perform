@@ -1,6 +1,7 @@
 {
     "hooks": {
         "pre-commit": "lint-staged",
-        "pre-push": "cross-env CI=true yarn test --passWithNoTests"
+        "pre-push": "cross-env CI=true yarn test --passWithNoTests",
+        "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
 }
