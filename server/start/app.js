@@ -10,6 +10,10 @@
 | provider here.
 |
 */
+
+
+
+
 const providers = [
   '@adonisjs/framework/providers/AppProvider',
   '@adonisjs/auth/providers/AuthProvider',
@@ -25,7 +29,8 @@ const providers = [
   '@adonisjs/validator/providers/ValidatorProvider',
   'adonis-acl/providers/AclProvider',
   '@adonisjs/antl/providers/AntlProvider',
-  'adonis-sentry/providers/Sentry'
+  'adonis-sentry/providers/Sentry',
+  '@adonisjs/vow/providers/VowProvider'
 ]
 
 /*
