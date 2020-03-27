@@ -46,7 +46,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "commit": "git-cz"
   },
   "eslintConfig": {
     "extends": "react-app"
