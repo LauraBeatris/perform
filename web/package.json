@@ -41,17 +41,6 @@
     "styled-system": "^5.1.5",
     "yup": "^0.28.3"
   },
-  "husky": {
-    "hooks": {
-        "pre-commit": "lint-staged"
-    },
-    "lint-staged": {
-        "src/**/**.js": [
-            "eslint --fix",
-            "git add ."
-        ]
-    }
-  },
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",

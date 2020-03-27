@@ -1,0 +1,6 @@
+{
+    "hooks": {
+        "pre-commit": "lint-staged",
+        "pre-push": "cross-env CI=true yarn test --bail"
+    }
+}

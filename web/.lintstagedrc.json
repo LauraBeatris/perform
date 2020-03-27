@@ -1,0 +1,7 @@
+{
+    "src/**/*.{js,ts,tsx}": [
+        "eslint --ext js,ts,tsx --fix",
+        "cross-env CI=true yarn test --bail --findRelatedTests",
+        "git add"
+    ]
+}
