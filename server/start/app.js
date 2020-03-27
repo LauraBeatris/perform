@@ -11,9 +11,6 @@
 |
 */
 
-
-
-
 const providers = [
   '@adonisjs/framework/providers/AppProvider',
   '@adonisjs/auth/providers/AuthProvider',
