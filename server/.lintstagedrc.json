@@ -1,6 +1,6 @@
 {
   "*.{js,ts,tsx}": [
-    "eslint --fix",
+    "eslint --ext js,tx,tsx --fix",
     "yarn test --bail",
     "git add"
   ]
