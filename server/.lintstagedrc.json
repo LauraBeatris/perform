@@ -1,5 +1,5 @@
 {
-  "src/**/*.{js,ts,tsx}": [
+  "*.{js,ts,tsx}": [
     "eslint --fix",
     "yarn test --bail",
     "git add"
