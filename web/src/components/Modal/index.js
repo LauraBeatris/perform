@@ -9,7 +9,7 @@ export default function Modal({ children }) {
         modalRoot.appendChild(wrapper);
 
         return () => modalRoot.removeChild(wrapper);
-    }, []);
+    }, [modalRoot, wrapper]);
 
     return ReactDOM.createPortal(children, wrapper);
 }

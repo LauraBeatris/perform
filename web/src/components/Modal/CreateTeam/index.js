@@ -31,7 +31,7 @@ export default function CreateTeamModal() {
                         type="text"
                         id="name"
                         name="name"
-                        placeholder="Your best name for a team"
+                        placeholder="Type your best name for a team"
                         height={44}
                         marginBottom="3"
                         padding="3"
