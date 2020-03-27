@@ -43,7 +43,7 @@
   },
   "husky": {
     "hooks": {
-        "pre-commit": "echo '$HUSKY_GIT_PARAMS_REACT_APP_NAME'"
+        "pre-commit": "echo $HUSKY_GIT_PARAMS_REACT_APP_NAME"
     }
   },
   "scripts": {
