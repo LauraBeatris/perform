@@ -43,7 +43,13 @@
   },
   "husky": {
     "hooks": {
-        "pre-commit": "echo 'hey'"
+        "pre-commit": "lint-staged"
+    },
+    "lint-staged": {
+        "src/**/**.js": [
+            "eslint --fix",
+            "git add ."
+        ]
     }
   },
   "scripts": {
