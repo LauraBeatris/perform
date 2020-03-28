@@ -7,11 +7,13 @@ export const Container = styled.div`
 export const Content = styled.main`
     padding: 5rem 2rem 10rem;
     min-height: 100vh;
+    overflow: scroll;
+    height: 100vh;
 
     @media screen and (min-width: 800px) {
         height: 100vh;
         margin-left: 5rem;
         padding: 5rem 5rem;
-        min-height: 100vh;
+        overflow: initial;
     }
 `;

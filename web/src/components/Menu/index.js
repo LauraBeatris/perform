@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withRouter, Link } from 'react-router-dom';
 import { withTheme } from 'styled-components';
 import { FaUsers, FaTasks } from 'react-icons/fa';
 import { AiFillProject, AiOutlineLogout } from 'react-icons/ai';
-import { Link, withRouter } from 'react-router-dom';
 
-import { Container, Logo, ListItems, Item } from './styles';
+import { Overlay, Container, Logo, ListItems, Item } from './styles';
 import { UserCreators } from '~/store/ducks/user';
+import { TeamCreators } from '~/store/ducks/teams';
+
 import TeamSwitcher from '~/components/TeamSwitcher/Menu';
 
 function SignOut({ children }) {
@@ -36,15 +38,15 @@ SignOut.propTypes = {
 };
 
 export function Menu({ location }) {
-    const [teamsActive, setTeamsActive] = useState(false);
+    const dispatch = useDispatch();
 
-    function toggleTeamsList() {
-        setTeamsActive(!teamsActive);
+    function toggleTeamSwitcher() {
+        dispatch(TeamCreators.toggleTeamSwitcher());
     }
 
     return (
-        <>
-            <Container>
+        <Overlay>
+            <Container id="menu-container">
                 <ListItems>
                     <Item id="logo">
                         <Link to="/">
@@ -52,7 +54,7 @@ export function Menu({ location }) {
                         </Link>
                     </Item>
 
-                    <Item onClick={toggleTeamsList}>
+                    <Item onClick={toggleTeamSwitcher}>
                         <FaUsers size="35px" />
                         <strong>Teams</strong>
                     </Item>
@@ -76,8 +78,8 @@ export function Menu({ location }) {
                     </Item>
                 </ListItems>
             </Container>
-            <TeamSwitcher active={teamsActive} />
-        </>
+            <TeamSwitcher />
+        </Overlay>
     );
 }
 

@@ -8,6 +8,10 @@ import { login, logout } from './user';
 import { TeamTypes } from '../ducks/teams';
 import { listTeams, createTeam } from './teams';
 
+/* Project Sagas */
+import { ProjectTypes } from '../ducks/projects';
+import { listProjects, createProject } from './projects';
+
 export default function* rootSaga() {
     return yield all([
         takeLatest(UserTypes.LOGIN_REQUEST, login),
@@ -15,5 +19,8 @@ export default function* rootSaga() {
 
         takeLatest(TeamTypes.TEAMS_REQUEST, listTeams),
         takeLatest(TeamTypes.CREATE_TEAM_REQUEST, createTeam),
+
+        takeLatest(ProjectTypes.PROJECTS_REQUEST, listProjects),
+        takeLatest(ProjectTypes.CREATE_PROJECT_REQUEST, createProject),
     ]);
 }

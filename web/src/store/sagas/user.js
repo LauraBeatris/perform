@@ -4,7 +4,7 @@ import { UserCreators } from '../ducks/user';
 import api from '~/services/api';
 import history from '~/routes/history';
 
-import addToast from '~/helpers/addToast';
+import addToast from '~/lib/addToast';
 
 export function* login(data) {
     try {

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 import { color, fontSize, minWidth, minHeight, space } from 'styled-system';
 
 export const StyledButton = styled.button`
@@ -21,6 +22,11 @@ export const StyledButton = styled.button`
     border-radius: 10px;
     border: none;
     font-weight: bold;
+
+    &:hover {
+        background-color: ${({ theme, ...rest }) =>
+            darken(0.2, theme.colors[rest.backgroundColor])}
+    }
 `;
 
 export const Text = styled.span`

@@ -1,5 +1,6 @@
 import { produce } from 'immer';
 import { createActions, createReducer } from 'reduxsauce';
+import history from '~/routes/history';
 
 /*
    === Actions ===
@@ -14,6 +15,9 @@ export const { Types, Creators } = createActions({
     createTeamRequest: ['data'],
     createTeamSuccess: ['team'],
     createTeamFailure: ['error'],
+    openTeamSwitcher: null,
+    closeTeamSwitcher: null,
+    toggleTeamSwitcher: null,
 });
 
 export const TeamTypes = Types;
@@ -28,6 +32,7 @@ const INITIAL_STATE = {
     error: null,
     active: JSON.parse(localStorage.getItem('perform:activeTeam')) || null,
     createTeamModal: false,
+    teamSwitcher: false,
 };
 
 export const teamsSuccess = (state, { data }) => {
@@ -49,6 +54,13 @@ export const selectTeam = (state, { team }) => {
     return produce(state, draft => {
         if (team) {
             draft.active = team;
+
+            /*
+                Verify if the active team was null, meaning that is the first time that the user is selecting a active team
+                and redirect to the projects page
+            */
+            if (draft.active && !state.active) history.push('/projects');
+
             try {
                 localStorage.setItem(
                     'perform:activeTeam',
@@ -76,6 +88,27 @@ export const closeCreateTeamModal = (state, _) => {
     });
 };
 
+export const openTeamSwitcher = (state, _) => {
+    return produce(state, draft => {
+        draft.teamSwitcher = true;
+        return draft;
+    });
+};
+
+export const closeTeamSwitcher = (state, _) => {
+    return produce(state, draft => {
+        draft.teamSwitcher = false;
+        return draft;
+    });
+};
+
+export const toggleTeamSwitcher = (state, _) => {
+    return produce(state, draft => {
+        draft.teamSwitcher = !state.teamSwitcher;
+        return draft;
+    });
+};
+
 export const createTeam = (state, { team }) => {
     return produce(state, draft => {
         draft.data = [...draft.data, team];
@@ -90,6 +123,9 @@ const reducer = createReducer(INITIAL_STATE, {
     [Types.OPEN_CREATE_TEAM_MODAL]: openCreateTeamModal,
     [Types.CLOSE_CREATE_TEAM_MODAL]: closeCreateTeamModal,
     [Types.CREATE_TEAM_SUCCESS]: createTeam,
+    [Types.OPEN_TEAM_SWITCHER]: openTeamSwitcher,
+    [Types.CLOSE_TEAM_SWITCHER]: closeTeamSwitcher,
+    [Types.TOGGLE_TEAM_SWITCHER]: toggleTeamSwitcher,
 });
 
 export default reducer;

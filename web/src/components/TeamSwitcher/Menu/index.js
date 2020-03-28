@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaSearch } from 'react-icons/fa';
-import PropTypes from 'prop-types';
 
 import {
     Container,
@@ -14,11 +13,11 @@ import {
 } from './styles';
 import { TeamCreators } from '~/store/ducks/teams';
 
-export default function TeamSwitcherMenu({ active }) {
-    const { data: teams, active: activeTeam } = useSelector(
+export default function TeamSwitcherMenu() {
+    const dispatch = useDispatch();
+    const { data: teams, active: activeTeam, teamSwitcher } = useSelector(
         state => state.teams
     );
-    const dispatch = useDispatch();
 
     function selectTeam(team) {
         dispatch(TeamCreators.selectTeam(team));
@@ -28,9 +27,25 @@ export default function TeamSwitcherMenu({ active }) {
         dispatch(TeamCreators.openCreateTeamModal());
     }
 
+    useEffect(() => {
+        function closeTeamSwitcher(event) {
+            if (
+                !event.target.closest('#team-switcher-content') &&
+                !event.target.closest('#menu-container') &&
+                !event.target.closest('#modal-overlay')
+            ) {
+                dispatch(TeamCreators.closeTeamSwitcher());
+            }
+        }
+
+        if (teamSwitcher) document.addEventListener('click', closeTeamSwitcher);
+
+        return () => document.removeEventListener('click', closeTeamSwitcher);
+    }, [dispatch, teamSwitcher]);
+
     return (
-        <Container active={active}>
-            <Content>
+        <Container active={teamSwitcher}>
+            <Content id="team-switcher-content">
                 <InputWrapper>
                     <FaSearch />
                     <input type="text" name="team" placeholder="Search.." />
@@ -66,11 +81,3 @@ export default function TeamSwitcherMenu({ active }) {
         </Container>
     );
 }
-
-TeamSwitcherMenu.defaultProps = {
-    active: false,
-};
-
-TeamSwitcherMenu.propTypes = {
-    active: PropTypes.bool,
-};

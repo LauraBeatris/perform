@@ -53,6 +53,24 @@ class Api {
                 .catch(err => reject(err));
         });
     }
+
+    getProjects() {
+        return new Promise((resolve, reject) => {
+            this.api
+                .get('/projects')
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
+    createProject({ title }) {
+        return new Promise((resolve, reject) => {
+            this.api
+                .post('/projects', { title })
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
 }
 
 export default new Api();

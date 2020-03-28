@@ -74,6 +74,7 @@ export default function SignIn() {
                         <Button
                             icon={<FaArrowRight />}
                             backgroundColor="white"
+                            border="none"
                             color="purple"
                             fontSize="sm"
                             type="submit"

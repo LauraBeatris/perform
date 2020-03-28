@@ -3,19 +3,19 @@ import { useDispatch } from 'react-redux';
 import Modal from '../Main/index';
 
 import Input from '~/components/Input';
-import { TeamCreators } from '~/store/ducks/teams';
+import { ProjectCreators } from '~/store/ducks/projects';
 import { Container, Header, StyledForm } from './styles';
 import { StyledButton as Button } from '~/styles/components/Button';
 
-export default function CreateTeamModal() {
+export default function CreateProjectModal() {
     const dispatch = useDispatch();
 
     function handleSubmit(data) {
-        dispatch(TeamCreators.createTeamRequest(data));
+        dispatch(ProjectCreators.createProjectRequest(data));
     }
 
     function handleClose() {
-        dispatch(TeamCreators.closeCreateTeamModal());
+        dispatch(ProjectCreators.closeCreateProjectModal());
     }
 
     useEffect(() => {
@@ -36,15 +36,15 @@ export default function CreateTeamModal() {
             <Container>
                 {' '}
                 <Header>
-                    <h1>Create a Team</h1>
+                    <h1>Create a Project</h1>
                 </Header>
                 <StyledForm onSubmit={handleSubmit}>
-                    <label htmlFor="name">Team Name</label>
+                    <label htmlFor="title">Project Title</label>
                     <Input
                         type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Type your best name for a team"
+                        id="title"
+                        name="title"
+                        placeholder="Type your best title for a project"
                         height={44}
                         marginBottom="3"
                         padding="3"

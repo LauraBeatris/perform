@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import { color, fontSize } from 'styled-system';
+import { color, fontSize, border, borderStyle } from 'styled-system';
 
 export const StyledButton = styled.button`
     ${color}
     ${fontSize}
+    ${border}
+    ${borderStyle}
 
     display: flex;
     justify-content: space-between;
@@ -13,7 +15,7 @@ export const StyledButton = styled.button`
     min-width: 150px;
     min-height: 52px;
     border-radius: 10px;
-    border: none;
+
     font-weight: bold;
 `;
 

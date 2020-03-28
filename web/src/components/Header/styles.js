@@ -39,11 +39,12 @@ export const Badge = styled.span`
     justify-content: center;
 
     position: absolute;
-    right: 0;
+    right: -5px;
     top: -5px;
     width: 24px;
     height: 24px;
-    outline: 3px solid #eee;
+    border: 3px solid #eee;
+    box-sizing: content-box;
 `;
 
 export const ProfileButton = styled.button`

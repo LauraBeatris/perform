@@ -31,6 +31,7 @@ export default function Welcome() {
                 <Link style={{ textDecoration: 'none' }} to="/signin">
                     <Button
                         backgroundColor="white"
+                        border="none"
                         color="purple"
                         fontSize="sm"
                         icon={<FaArrowRight />}

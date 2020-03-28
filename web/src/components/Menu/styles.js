@@ -5,6 +5,16 @@ import {
     strokeAnimationReverse,
 } from '~/styles/animations/svg';
 
+export const Overlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: none;
+    z-index: 10;
+    display: flex;
+`;
+
 export const Container = styled.nav`
     display: flex;
     position: fixed;

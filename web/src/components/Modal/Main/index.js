@@ -4,7 +4,7 @@ import { Overlay, Container } from './styles';
 
 export default function MainModal({ children, ...styles }) {
     return (
-        <Overlay>
+        <Overlay id="modal-overlay">
             <Container {...styles}>{children}</Container>
         </Overlay>
     );
