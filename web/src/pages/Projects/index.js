@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import Helmet from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiPackage } from 'react-icons/fi';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaUsers } from 'react-icons/fa';
 
 import {
     Container,
@@ -13,13 +14,13 @@ import {
     ProjectList,
     Project,
     ProjectHeader,
-    ProjectMembers,
 } from './styles';
 import addToast from '~/lib/addToast';
 import Button from '~/components/Button';
 
 import { TeamCreators } from '~/store/ducks/teams';
 import { ProjectCreators } from '~/store/ducks/projects';
+import { MembersCreators } from '~/store/ducks/members';
 
 export default function Projects() {
     const dispatch = useDispatch();
@@ -28,6 +29,10 @@ export default function Projects() {
 
     function openCreateProjectModal() {
         dispatch(ProjectCreators.openCreateProjectModal());
+    }
+
+    function openMembersModal() {
+        dispatch(MembersCreators.openMembersModal());
     }
 
     useEffect(() => {
@@ -52,6 +57,13 @@ export default function Projects() {
 
     return (
         <Container>
+            <Helmet>
+                {active && active.name ? (
+                    <title> Perform | Projects of {active.name} team </title>
+                ) : (
+                    <title> Perform | No selected team </title>
+                )}
+            </Helmet>
             <Header>
                 <Message>
                     {active && active.name ? (
@@ -84,6 +96,17 @@ export default function Projects() {
                     >
                         New Project
                     </Button>
+                    <Button
+                        icon={<FaUsers size="20" />}
+                        backgroundColor="white"
+                        borderColor="purple"
+                        borderStyle="solid"
+                        color="purple"
+                        fontSize="sm"
+                        onClick={openMembersModal}
+                    >
+                        Members
+                    </Button>
                 </Actions>
             </Header>
             {!active || data.length < 1 ? (
@@ -102,29 +125,6 @@ export default function Projects() {
                                 />
                                 <p>{project.description}</p>
                             </ProjectHeader>
-                            <ProjectMembers>
-                                <img
-                                    src="https://source.unsplash.com/random"
-                                    alt="Member"
-                                    id="owner"
-                                />
-                                <img
-                                    src="https://source.unsplash.com/random"
-                                    alt="Member"
-                                />
-                                <img
-                                    src="https://source.unsplash.com/random"
-                                    alt="Member"
-                                />
-                                <img
-                                    src="https://source.unsplash.com/random"
-                                    alt="Member"
-                                />
-                                <img
-                                    src="https://source.unsplash.com/random"
-                                    alt="Member"
-                                />
-                            </ProjectMembers>
                         </Project>
                     ))}
                 </ProjectList>

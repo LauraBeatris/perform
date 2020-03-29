@@ -18,7 +18,6 @@ export const Header = styled.header`
     @media screen and (min-width: 1000px) {
         align-items: center;
         flex-direction: row;
-        padding-top: 0;
     }
 `;
 
@@ -27,9 +26,15 @@ export const Actions = styled.div`
     flex-direction: column;
     height: 100%;
     margin-top: ${({ theme }) => `${theme.spaces[4]}px`};
+    align-self: stretch;
+    position: relative;
 
     button {
         margin-top: ${({ theme }) => `${theme.spaces[3]}px`};
+    }
+
+    input {
+        width: 100%;
     }
 
     @media screen and (min-width: 1000px) {
@@ -38,10 +43,16 @@ export const Actions = styled.div`
 
         input {
             margin-right: ${({ theme }) => `${theme.spaces[2]}px`};
+            margin-bottom: 0;
+            width: initial;
         }
 
         button {
             margin-top: 0;
+        }
+
+        button + button {
+            margin-left: ${({ theme }) => `${theme.spaces[2]}px`};
         }
     }
 `;
@@ -58,7 +69,6 @@ export const InputWrapper = styled.div`
         padding: ${({ theme }) =>
             `${theme.spaces[2]}px 0 ${theme.spaces[2]}px 30px`};
         color: ${({ theme }) => theme.colors.grayLight};
-        max-width: 100%;
         height: 100%;
     }
 
@@ -107,6 +117,7 @@ export const ProjectList = styled.div`
 
 export const Project = styled.div`
     background: ${({ theme }) => theme.colors.white};
+    box-shadow: 2px 4px 6px -2px rgba(0, 0, 0, 0.7s);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,49 +138,20 @@ export const ProjectHeader = styled.header`
     padding-bottom: ${({ theme }) => `${theme.spaces[2]}px`};
 
     strong {
-        font-size: ${({ theme }) => theme.fontSizes.sm};
+        font-size: ${({ theme }) => theme.fontSizes.md};
     }
 
     img {
-        height: 64px;
-        width: 64px;
+        height: 124px;
+        width: 124px;
         border-radius: 50%;
-        margin: auto;
-        margin: ${({ theme }) => `${theme.spaces[2]}px auto`};
+        margin: ${({ theme }) => `${theme.spaces[4]}px auto 0`};
     }
 
     p {
         text-overflow: hidden;
         font-weight: lighter;
         font-size: ${({ theme }) => theme.fontSizes.sm};
-    }
-`;
-
-export const ProjectMembers = styled.div`
-    margin-top: auto;
-
-    img {
-        height: 32px;
-        width: 32px;
-        border-radius: 50%;
-        box-shadow: 1px 4px 6px -4px rgba(0, 0, 0, 0.4);
-        position: relative;
-
-        &:not(:last-child) {
-            margin-right: ${({ theme }) => `${theme.spaces[1]}px`};
-        }
-
-        &#owner::before {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            border: 1px solid ${({ theme }) => theme.colors.grayLight};
-            background: inherit;
-            top: 0;
-            left: 0;
-        }
     }
 `;
 

@@ -8,11 +8,13 @@ import Container from './Container';
 import Modal from '~/components/Modal';
 import CreateTeamModal from '~/components/Modal/CreateTeam';
 import CreateProjectModal from '~/components/Modal/CreateProject';
+import MembersModal from '~/components/Modal/Members';
 
 export function App() {
     const dispatch = useDispatch();
     const { createTeamModal } = useSelector(state => state.teams);
     const { createProjectModal } = useSelector(state => state.projects);
+    const { membersModal } = useSelector(state => state.members);
 
     useEffect(() => {
         dispatch(TeamCreators.teamsRequest());
@@ -29,6 +31,11 @@ export function App() {
             {createProjectModal && (
                 <Modal>
                     <CreateProjectModal />
+                </Modal>
+            )}
+            {membersModal && (
+                <Modal>
+                    <MembersModal />
                 </Modal>
             )}
         </>

@@ -17,7 +17,7 @@ export default function Recover() {
     return (
         <>
             <Helmet>
-                <title>Perform | Recover your account </title>
+                <title>Perform | Recover your account</title>
             </Helmet>
             <Container
                 type="withDecoration"

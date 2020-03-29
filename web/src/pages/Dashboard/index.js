@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -21,6 +22,9 @@ export default function DashboardPage() {
 
     return (
         <Container>
+            <Helmet>
+                <title> Perform | Welcome {name} </title>
+            </Helmet>
             <Header>
                 <Message>
                     Welcome
