@@ -1,7 +1,7 @@
 {
-  "*.{js,ts,tsx}": [
+  "app/*.{js,ts,tsx}": [
     "eslint --ext js,tx,tsx --fix",
-    "node ace test --bail",
+    "yarn test --bail",
     "git add"
   ]
 }
