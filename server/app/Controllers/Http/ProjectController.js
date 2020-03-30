@@ -18,7 +18,7 @@ class ProjectController {
   }
 
   async store ({ request, response }) {
-    const data = request.only(['title'])
+    const data = request.only(['title', 'description'])
 
     try {
       const project = await request.team.projects().create(data)
@@ -50,7 +50,7 @@ class ProjectController {
   }
 
   async update ({ params, request, response }) {
-    const data = request.only('title')
+    const data = request.only('title', 'description')
     try {
       const project = await request.team.projects().where('id', params.id).first()
       project.merge(data)

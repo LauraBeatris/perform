@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 import { FaArrowRight } from 'react-icons/fa';
 import { Form } from '@unform/web';
 import { Link } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
 
 import { UserCreators } from '~/store/ducks/user';

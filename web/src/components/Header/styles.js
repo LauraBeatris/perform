@@ -9,6 +9,7 @@ export const Container = styled.header`
     display: flex;
     justify-content: space-between;
     padding: ${({ theme }) => `${theme.spaces[4]}px`};
+    z-index: 10;
 
     nav {
         margin-left: auto;

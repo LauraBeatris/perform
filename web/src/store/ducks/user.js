@@ -7,6 +7,9 @@ import { createActions, createReducer } from 'reduxsauce';
 export const { Types, Creators } = createActions({
     loginRequest: ['email', 'password'],
     loginSuccess: ['token', 'name', 'email'],
+    signUpRequest: ['email', 'name', 'password', 'password_confirmation'],
+    signUpSuccess: null,
+    signUpFailure: null,
     loginFailure: null,
     logoutRequest: null,
     logoutSuccess: null,

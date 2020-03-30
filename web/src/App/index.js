@@ -12,13 +12,16 @@ import MembersModal from '~/components/Modal/Members';
 
 export function App() {
     const dispatch = useDispatch();
-    const { createTeamModal } = useSelector(state => state.teams);
-    const { createProjectModal } = useSelector(state => state.projects);
-    const { membersModal } = useSelector(state => state.members);
+    const signedIn = useSelector(state => state.user.signedIn)
+    const createTeamModal = useSelector(state => state.teams.createTeamModal);
+    const createProjectModal = useSelector(state => state.projects.createProjectModal);
+    const membersModal  = useSelector(state => state.members.membersModal);
 
     useEffect(() => {
-        dispatch(TeamCreators.teamsRequest());
-    }, [dispatch]);
+       if (signedIn) dispatch(TeamCreators.teamsRequest());
+
+    // eslint-disable-next-line
+    }, []);
 
     return (
         <>

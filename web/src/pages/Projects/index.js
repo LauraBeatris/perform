@@ -24,8 +24,8 @@ import { MembersCreators } from '~/store/ducks/members';
 
 export default function Projects() {
     const dispatch = useDispatch();
-    const { active } = useSelector(state => state.teams);
-    const { data } = useSelector(state => state.projects);
+    const active = useSelector(state => state.teams.active);
+    const data = useSelector(state => state.projects.data);
 
     function openCreateProjectModal() {
         dispatch(ProjectCreators.openCreateProjectModal());
@@ -36,22 +36,20 @@ export default function Projects() {
     }
 
     useEffect(() => {
-        dispatch(ProjectCreators.projectsRequest());
-    }, [dispatch, active]);
-
-    useEffect(() => {
         if (!active) {
             addToast(
-                'You have to select a team inside of the Team Switcher Bar, in order to see the Projects List',
+                'Select a team inside of the Team Switcher Bar, in order to see the Projects List',
                 {
-                    appearance: 'error',
+                    appearance: 'info',
                     autoDismiss: true,
-                    autoDismissTimeout: 3500,
+                    autoDismissTimeout: 4500,
                     pauseOnHover: false,
                 }
             );
 
             setTimeout(() => dispatch(TeamCreators.openTeamSwitcher()), 1000);
+        } else {
+            dispatch(ProjectCreators.projectsRequest());
         }
     }, [active, dispatch]);
 
@@ -116,7 +114,7 @@ export default function Projects() {
             ) : (
                 <ProjectList>
                     {data.map(project => (
-                        <Project>
+                        <Project key={project.id}>
                             <ProjectHeader>
                                 <strong>{project.title}</strong>
                                 <img

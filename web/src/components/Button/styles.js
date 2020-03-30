@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { color, fontSize, border, borderStyle } from 'styled-system';
+import { color, fontSize, border, borderStyle, space } from 'styled-system';
 
 export const StyledButton = styled.button`
     ${color}
     ${fontSize}
     ${border}
     ${borderStyle}
+    ${space}
 
     display: flex;
     justify-content: space-between;

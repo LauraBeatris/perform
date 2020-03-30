@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Select from 'react-select'
+import { Form } from '@unform/web';
 
 export const Container = styled.div`
     display: flex;
@@ -41,6 +43,23 @@ export const Header = styled.header`
     margin-bottom: ${({ theme }) => `${theme.spaces[4]}px`};
 `;
 
+export const InviteForm = styled(Form)`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    grid-gap: ${({ theme }) => `${theme.spaces[2]}px`};
+    margin: ${({ theme }) => `${theme.spaces[2]}px`} 0px;
+
+    @media screen and (min-width: 1000px) {
+        display: grid;
+        grid-template-columns: 1fr 0.3fr;
+        grid-template-rows: auto;
+        align-items: center;
+        grid-gap: ${({ theme }) => `${theme.spaces[2]}px`};
+    }
+`
+
 export const MembersList = styled.ul`
     list-style: none;
 
@@ -49,8 +68,14 @@ export const MembersList = styled.ul`
         border-radius: 4px;
         color: ${({ theme }) => theme.colors['dark-secondary']};
         display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: space-between;
         padding: ${({ theme }) => `${theme.spaces[3]}px ${theme.spaces[2]}px`};
+
+        @media screen and (min-width: 1000px) {
+            flex-direction: row;
+        }
 
         img {
             width: 42px;
@@ -79,3 +104,13 @@ export const MembersList = styled.ul`
         margin-top: ${({ theme }) => `${theme.spaces[3]}px`};
     }
 `;
+
+export const StyledSelect = styled(Select)`
+    margin-top: ${({ theme }) => `${theme.spaces[2]}px`};
+    width: 100%;
+
+    @media screen and (min-width: 1000px) {
+        margin-top: 0;
+        width: 50%;
+    }
+`

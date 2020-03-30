@@ -5,14 +5,14 @@ const Schema = use('Schema')
 
 class ProjectSchema extends Schema {
   up () {
-    this.alter('projects', (table) => {
-      table.string('description')
+    this.table('projects', (table) => {
+      // alter table
     })
   }
 
   down () {
-    this.alter('projects', (table) => {
-      table.dropColumn('description')
+    this.table('projects', (table) => {
+      // reverse alternations
     })
   }
 }

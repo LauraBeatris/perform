@@ -25,7 +25,7 @@ export const StyledButton = styled.button`
 
     &:hover {
         background-color: ${({ theme, ...rest }) =>
-            darken(0.2, theme.colors[rest.backgroundColor])}
+            darken(0.2, theme.colors[rest.backgroundColor || 'purple'])}
     }
 `;
 

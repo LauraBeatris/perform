@@ -19,6 +19,11 @@ class MemberController {
     const roles = request.input('roles')
     try {
       const member = await UserTeam.findOrFail(params.id)
+
+      if (roles.length < 1) {
+        return response.status(400).send('A member needs to have a least one role')
+      }
+
       await member.roles().sync(roles)
       await member.loadMany(['roles', 'team', 'user'])
 
@@ -30,7 +35,8 @@ class MemberController {
             message: 'Something went wrong updating the member role',
             data: { name: err.name, message: err.message }
           }
-        })
+        }
+      )
     }
   }
 }

@@ -33,6 +33,31 @@ export function* login(data) {
     }
 }
 
+export function* signUp(data) {
+    try {
+        yield api.signUp(data);
+        yield put(UserCreators.signUpSuccess());
+
+        addToast('Successfully login', {
+            appearance: 'success',
+            autoDismiss: true,
+            pauseOnHover: false,
+        });
+
+        history.push('/signin');
+    } catch (err) {
+        yield put(UserCreators.loginFailure());
+        addToast(
+              'Error trying to sign up, please try again.',
+            {
+                appearance: 'error',
+                autoDismiss: true,
+                pauseOnHover: false,
+            }
+        );
+    }
+}
+
 export function* logout() {
     history.push('/signin');
     addToast('Successfully logout', {

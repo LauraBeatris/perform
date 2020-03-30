@@ -55,8 +55,8 @@ Route.group(() => {
     ]
   ))
 
-  Route.get('members', 'MemberController.index').middleware(['is:moderator,administrator'])
-  Route.put('members/:id', 'MemberController.update').validator('Member/Update.js').middleware(['is:moderator'])
+  Route.get('members', 'MemberController.index')
+  Route.put('members/:id', 'MemberController.update').validator('Member/Update.js').middleware(['is:(moderator||administrator)'])
 
   Route.get('permissions/:id', 'PermissionController.show')
 

@@ -9,7 +9,7 @@ const Database = use('Database')
 class TeamController {
   async index ({ response, auth }) {
     try {
-      const teams = await auth.user.teams().fetch()
+      const teams = await auth.user.teams().with('user').fetch()
 
       return teams
     } catch (err) {

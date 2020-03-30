@@ -9,7 +9,7 @@ class CreateUser {
     return {
       name: 'required|string',
       email: 'required|email|unique:users',
-      password: 'required|min:6|max:30'
+      password: 'required|confirmed|min:6|max:30'
     }
   }
 

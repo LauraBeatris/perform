@@ -7,7 +7,8 @@ class CreateProject {
 
   get rules () {
     return {
-      title: 'required|string'
+      title: 'required|string',
+      description: 'string'
     }
   }
 

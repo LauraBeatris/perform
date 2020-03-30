@@ -25,6 +25,11 @@ class Api {
             },
             error => Promise.reject(error)
         );
+
+        this.api.interceptors.response.use(
+            response => response,
+            error => Promise.reject(error.response)
+        );
     }
 
     login({ email, password }) {
@@ -32,6 +37,20 @@ class Api {
             this.api
                 .post('/sessions', { email, password })
                 .then(res => resolve({ ...res.data, email }))
+                .catch(err => reject(err));
+        });
+    }
+
+    signUp({ email, name, password, password_confirmation }) {
+        return new Promise((resolve, reject) => {
+            this.api
+                .post('/users', {
+                    email,
+                    name,
+                    password,
+                    password_confirmation,
+                })
+                .then(res => resolve(res.data))
                 .catch(err => reject(err));
         });
     }
@@ -67,6 +86,33 @@ class Api {
         return new Promise((resolve, reject) => {
             this.api
                 .post('/projects', { title })
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
+    getMembers() {
+        return new Promise((resolve, reject) => {
+            this.api
+                .get('/members')
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
+    getRoles() {
+        return new Promise((resolve, reject) => {
+            this.api
+                .get('/roles')
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
+    updateRoles(roles, memberId) {
+        return new Promise((resolve, reject) => {
+            this.api
+                .put(`/members/${memberId}`, { roles })
                 .then(res => resolve(res.data))
                 .catch(err => reject(err));
         });

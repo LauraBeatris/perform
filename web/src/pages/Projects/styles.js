@@ -27,7 +27,6 @@ export const Actions = styled.div`
     height: 100%;
     margin-top: ${({ theme }) => `${theme.spaces[4]}px`};
     align-self: stretch;
-    position: relative;
 
     button {
         margin-top: ${({ theme }) => `${theme.spaces[3]}px`};

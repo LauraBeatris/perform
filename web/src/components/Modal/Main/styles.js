@@ -17,6 +17,7 @@ export const Overlay = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 10;
     display: flex;
+    overflow: auto;
 `;
 
 export const Container = styled.div`

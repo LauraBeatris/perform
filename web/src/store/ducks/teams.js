@@ -1,6 +1,8 @@
 import { produce } from 'immer';
 import { createActions, createReducer } from 'reduxsauce';
+
 import history from '~/routes/history';
+import { UserTypes } from './user'
 
 /*
    === Actions ===
@@ -116,6 +118,20 @@ export const createTeam = (state, { team }) => {
     });
 };
 
+export const logout = state => {
+    return produce(state, draft => {
+        draft.active = null;
+
+        try {
+            localStorage.removeItem('perform:activeTeam');
+        } catch (err) {
+            draft.error = err;
+        }
+
+        return draft;
+    })
+}
+
 const reducer = createReducer(INITIAL_STATE, {
     [Types.TEAMS_SUCCESS]: teamsSuccess,
     [Types.TEAMS_FAILURE]: teamsFailure,
@@ -126,6 +142,7 @@ const reducer = createReducer(INITIAL_STATE, {
     [Types.OPEN_TEAM_SWITCHER]: openTeamSwitcher,
     [Types.CLOSE_TEAM_SWITCHER]: closeTeamSwitcher,
     [Types.TOGGLE_TEAM_SWITCHER]: toggleTeamSwitcher,
+    [UserTypes.LOGOUT_SUCCESS]: logout
 });
 
 export default reducer;

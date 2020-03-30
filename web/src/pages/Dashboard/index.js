@@ -13,7 +13,7 @@ import {
 import { TeamCreators } from '~/store/ducks/teams';
 
 export default function DashboardPage() {
-    const { name } = useSelector(state => state.user);
+    const name = useSelector(state => state.user.name);
     const dispatch = useDispatch();
 
     function openCreateTeamModal() {

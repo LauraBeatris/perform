@@ -7,7 +7,8 @@ class UpdateProject {
 
   get rules () {
     return {
-      title: 'string'
+      title: 'string',
+      description: 'string'
     }
   }
 
