@@ -13,6 +13,8 @@ class InviteController {
           .with('user')
           .fetch()
       return invites
+
+
     } catch (err) {
       return response.status(err.status || 500).send(
         {
