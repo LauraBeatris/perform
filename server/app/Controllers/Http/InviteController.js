@@ -15,6 +15,7 @@ class InviteController {
       return invites
 
 
+
     } catch (err) {
       return response.status(err.status || 500).send(
         {
