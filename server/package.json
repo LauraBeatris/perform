@@ -31,6 +31,7 @@
     "@adonisjs/redis": "^2.0.7",
     "@adonisjs/validator": "^5.0.6",
     "@adonisjs/vow": "^1.0.17",
+    "@adonisjs/websocket": "^1.0.12",
     "@sentry/node": "^5.14.2",
     "adonis-acl": "^1.1.1",
     "adonis-kue": "^5.0.1",

@@ -6,8 +6,14 @@ import { createActions, createReducer } from 'reduxsauce';
 */
 export const { Types, Creators } = createActions({
     loginRequest: ['email', 'password'],
-    loginSuccess: ['token', 'name', 'email'],
-    signUpRequest: ['email', 'name', 'password', 'password_confirmation'],
+    loginSuccess: ['id', 'token', 'name', 'email'],
+    signUpRequest: [
+        'email',
+        'name',
+        'password',
+        'password_confirmation',
+        'invite',
+    ],
     signUpSuccess: null,
     signUpFailure: null,
     loginFailure: null,
@@ -23,16 +29,18 @@ export const UserCreators = Creators;
 */
 
 const INITIAL_STATE = {
+    id: null,
     signedIn: false,
     token: null,
     email: null,
     name: null,
 };
 
-export const login = (state, { token, name, email }) => {
+export const login = (state, { id, token, name, email }) => {
     return produce(state, draft => {
         draft = {
             ...draft,
+            id,
             signedIn: true,
             token,
             name,

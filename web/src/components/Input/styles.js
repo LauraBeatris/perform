@@ -24,10 +24,16 @@ export const StyledInput = styled.input`
     width: 100%;
     border-radius: 10px;
 
+    &:disabled {
+        background: ${({ theme }) => theme.colors.gray};
+        cursor: not-allowed;
+    }
+
     ::placeholder {
         font-size: 14px;
         text-transform: uppercase;
         font-weight: 500;
         color: ${({ theme }) => theme.colors.gray};
     }
+
 `;

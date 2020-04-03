@@ -4,7 +4,7 @@ import { store } from '~/store';
 class Api {
     constructor() {
         this.api = axios.create({
-            baseURL: process.env.REACT_APP_API,
+            baseURL: `${window.location.protocol}//${process.env.REACT_APP_API}`,
         });
 
         // Intercept request to add the authorization header
@@ -113,6 +113,33 @@ class Api {
         return new Promise((resolve, reject) => {
             this.api
                 .put(`/members/${memberId}`, { roles })
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
+    createInvite(invites) {
+        return new Promise((resolve, reject) => {
+            this.api
+                .post('/invites', { invites })
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
+    getInvite(id) {
+        return new Promise((resolve, reject) => {
+            this.api
+                .get(`/invites/${id}`)
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
+    confirmInvite(id) {
+        return new Promise((resolve, reject) => {
+            this.api
+                .put(`/invites/${id}`, { confirmed: true })
                 .then(res => resolve(res.data))
                 .catch(err => reject(err));
         });

@@ -3,8 +3,8 @@
 const Role = use('Role')
 
 class RoleController {
-  async index() {
-    const roles = await Role.all()
+  async index () {
+    const roles = await Role.query().with('permissions').fetch()
     return roles
   }
 }

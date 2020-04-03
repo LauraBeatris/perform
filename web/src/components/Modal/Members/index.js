@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineMail } from 'react-icons/ai';
-
+import { Scope } from '@unform/core';
 import { MembersCreators } from '~/store/ducks/members';
 import {
     Container,
@@ -12,15 +12,39 @@ import {
 } from './styles';
 import Button from '~/components/Button';
 import Input from '~/components/Input';
-import api from '~/services/api';
 import addToast from '~/lib/addToast';
 import Modal from '../Main/index';
+import api from '~/services/api';
 
 export default function CreateMembersModal() {
     const dispatch = useDispatch();
     const members = useSelector(state => state.members.data);
     const loading = useSelector(state => state.members.loading);
     const [roles, setRoles] = useState([]);
+
+    async function handleInviteSubmit(data, { reset }) {
+        try {
+            await api.createInvite(data.invites.emails);
+            addToast(`Invite successfully sent`, {
+                appearance: 'success',
+                autoDismiss: true,
+                pauseOnHover: false,
+            });
+            reset();
+        } catch (err) {
+            console.tron.error(err);
+            addToast(
+                err.status === 403
+                    ? 'Only moderators are allowed to invite other members'
+                    : `Error trying to send the invite`,
+                {
+                    appearance: 'error',
+                    autoDismiss: true,
+                    pauseOnHover: false,
+                }
+            );
+        }
+    }
 
     function handleClose() {
         dispatch(MembersCreators.closeMembersModal());
@@ -33,6 +57,7 @@ export default function CreateMembersModal() {
             actions.action === 'remove-value' &&
             actions.removedValue.slug === 'moderator'
         ) {
+            /* eslint no-alert: "off" */
             const remove = window.confirm(
                 'Are you sure that you want to remove the moderator role of this member?'
             );
@@ -51,7 +76,7 @@ export default function CreateMembersModal() {
                 }
             );
 
-        dispatch(MembersCreators.updateRolesRequest(data, memberId));
+        return dispatch(MembersCreators.updateRolesRequest(data, memberId));
     }
 
     useEffect(() => {
@@ -96,17 +121,20 @@ export default function CreateMembersModal() {
                 <Header>
                     <h1>Manage Members</h1>
 
-                    <InviteForm>
-                        <Input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Type the email of a member that you wanna invite"
-                            height={44}
-                            padding="3"
-                            fontSize="2xs"
-                            backgroundColor="#eee"
-                        />
+                    <InviteForm onSubmit={handleInviteSubmit}>
+                        <Scope path="invites">
+                            <Input
+                                type="email"
+                                id="email"
+                                name="emails[0]"
+                                placeholder="Type the email of a member that you wanna invite"
+                                height={44}
+                                padding="3"
+                                fontSize="2xs"
+                                backgroundColor="#eee"
+                            />
+                        </Scope>
+
                         <Button
                             icon={<AiOutlineMail />}
                             backgroundColor="white"

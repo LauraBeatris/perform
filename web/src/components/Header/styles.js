@@ -16,6 +16,11 @@ export const Container = styled.header`
         display: flex;
         align-items: center;
     }
+
+    @media screen and (min-width: 1000px) {
+        padding: ${({ theme }) => `${theme.spaces[4]}px 5rem`};
+        z-index: initial;
+    }
 `;
 
 export const NotificationWrapper = styled.div`

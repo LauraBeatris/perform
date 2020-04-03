@@ -1,6 +1,6 @@
 import { put } from 'redux-saga/effects';
 
-import { TeamCreators } from '../ducks/teams';
+import { TeamCreators } from '~/store/ducks/teams';
 import api from '~/services/api';
 
 import addToast from '~/lib/addToast';

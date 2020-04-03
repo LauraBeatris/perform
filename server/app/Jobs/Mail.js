@@ -18,7 +18,7 @@ class MailJob {
         message.to(email).from(user.email, user.name).subject(subject)
       })
     } catch (err) {
-      console.log(err)
+      console.error('Error on the Mail Job', err)
     }
   }
 }

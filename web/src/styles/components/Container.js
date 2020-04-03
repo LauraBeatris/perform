@@ -22,6 +22,8 @@ const Container = styled.div.attrs({
     min-height: 100vh;
     display: flex;
     ${props => containerTypes[props.type || 'default']}
+    display: flex;
+    flex-direction: column;
 `;
 
 export default Container;

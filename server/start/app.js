@@ -27,7 +27,9 @@ const providers = [
   'adonis-acl/providers/AclProvider',
   '@adonisjs/antl/providers/AntlProvider',
   'adonis-sentry/providers/Sentry',
-  '@adonisjs/vow/providers/VowProvider'
+  '@adonisjs/vow/providers/VowProvider',
+  '@adonisjs/websocket/providers/WsProvider'
+
 ]
 
 /*

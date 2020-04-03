@@ -6,9 +6,7 @@ import { Container, Label, StyledInput } from './styles';
 
 export default function Input({ label, name, ...rest }) {
     const inputRef = useRef(null);
-    const { fieldName, defaultValue = '', registerField, error } = useField(
-        name
-    );
+    const { fieldName, defaultValue = '', registerField } = useField(name);
 
     useEffect(() => {
         registerField({
@@ -21,11 +19,21 @@ export default function Input({ label, name, ...rest }) {
     return (
         <Container>
             {label && <Label htmlFor={rest.id}>{label}</Label>}
-            <StyledInput ref={inputRef} defaultValue={defaultValue} {...rest} />
+            <StyledInput
+                name={name}
+                ref={inputRef}
+                defaultValue={defaultValue}
+                {...rest}
+            />
         </Container>
     );
 }
 
+Input.defaultProps = {
+    label: null,
+};
+
 Input.propTypes = {
     name: PropTypes.string.isRequired,
+    label: PropTypes.string,
 };

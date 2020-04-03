@@ -10,6 +10,7 @@ import SignUp from '~/pages/Auth/SignUp';
 import SignIn from '~/pages/Auth/SignIn';
 import Recover from '~/pages/Auth/Recover';
 
+import Account from '~/pages/Account';
 import Dashboard from '~/pages/Dashboard';
 import Projects from '~/pages/Projects';
 import Tasks from '~/pages/Tasks';
@@ -39,6 +40,12 @@ export default function Routes() {
                                 component={Dashboard}
                             />
                         </Switch>
+                    </Layout>
+                </Route>
+
+                <Route path="/account">
+                    <Layout>
+                        <PrivateRoute path="/account" render={Account} />
                     </Layout>
                 </Route>
 

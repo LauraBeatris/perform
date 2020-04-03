@@ -15,7 +15,8 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
-    'camelcase': "off"
+    'camelcase': "off",
+    'import/no-cycle': "off"
   },
   globals: {
     use: true

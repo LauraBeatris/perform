@@ -173,10 +173,6 @@ export const Item = styled.li`
         margin: 16px 0;
         justify-content: flex-start;
         height: 5rem;
-
-        &:last-child {
-            margin-top: auto;
-        }
     }
 
     strong {

@@ -18,6 +18,7 @@ export default function TeamSwitcherMenu() {
     const { data: teams, active: activeTeam, teamSwitcher } = useSelector(
         state => state.teams
     );
+    const signedIn = useSelector(state => state.user.signedIn);
 
     function selectTeam(team) {
         dispatch(TeamCreators.selectTeam(team));
@@ -42,6 +43,11 @@ export default function TeamSwitcherMenu() {
 
         return () => document.removeEventListener('click', closeTeamSwitcher);
     }, [dispatch, teamSwitcher]);
+
+    useEffect(() => {
+        if (signedIn) dispatch(TeamCreators.teamsRequest());
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <Container active={teamSwitcher}>

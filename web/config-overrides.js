@@ -1,10 +1,20 @@
-const { override, addBabelPlugin } = require('customize-cra');
+const { override, addBabelPlugins } = require('customize-cra');
 
 module.exports = override(
-    addBabelPlugin([
-        'babel-plugin-root-import',
-        {
-            rootPathSuffix: 'src',
-        },
-    ])
+    ...addBabelPlugins(
+        [
+            'babel-plugin-root-import',
+            {
+                rootPathSuffix: 'src',
+            },
+        ],
+        [
+            '@babel/plugin-transform-regenerator',
+            {
+                asyncGenerators: false,
+                generators: false,
+                async: false,
+            },
+        ]
+    )
 );

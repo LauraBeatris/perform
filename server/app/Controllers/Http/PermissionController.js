@@ -3,7 +3,7 @@
 const UserTeam = use('App/Models/UserTeam')
 
 class PermissionController {
-  async show({params, response}) {
+  async show ({ params, response }) {
     try {
       const member = await UserTeam.findOrFail(params.id)
 
@@ -22,6 +22,5 @@ class PermissionController {
     }
   }
 }
-
 
 module.exports = PermissionController
