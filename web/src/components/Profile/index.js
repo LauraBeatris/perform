@@ -44,7 +44,6 @@ export default function Profile() {
     useEffect(() => {
         function handleClose(event) {
             if (!event.target.closest('#profile-container')) {
-                console.tron.log('HEY');
                 setActive(false);
             }
         }

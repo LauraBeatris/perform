@@ -136,10 +136,46 @@ class Api {
         });
     }
 
+    updateInvite(id, data) {
+        return new Promise((resolve, reject) => {
+            this.api
+                .put(`/invites/${id}`, data)
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
     confirmInvite(id) {
         return new Promise((resolve, reject) => {
             this.api
                 .put(`/invites/${id}`, { confirmed: true })
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
+    getNotifications(page = 1) {
+        return new Promise((resolve, reject) => {
+            this.api
+                .get(`/notifications?page=${page}`)
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        });
+    }
+
+    updateNotifications(notificationIds, data) {
+        const viewedRequests = notificationIds.map(id =>
+            this.api.put(`/notifications/${id}`, data)
+        );
+        return Promise.all(viewedRequests)
+            .then(responses => responses.map(response => response.data))
+            .catch(err => err);
+    }
+
+    deleteNotification(id) {
+        return new Promise((resolve, reject) => {
+            this.api
+                .delete(`/notifications/${id}`)
                 .then(res => resolve(res.data))
                 .catch(err => reject(err));
         });

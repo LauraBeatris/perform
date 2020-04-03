@@ -29,7 +29,6 @@ export default function Routes() {
                     <Layout>
                         <Switch>
                             <PrivateRoute path="/teams" component={TeamsList} />
-
                             <PrivateRoute path="/tasks" component={Tasks} />
                             <PrivateRoute
                                 path="/projects"

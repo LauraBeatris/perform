@@ -23,7 +23,7 @@ export function Menu({ location }) {
             <Container id="menu-container">
                 <ListItems>
                     <Item id="logo">
-                        <Link to="/">
+                        <Link to="/dashboard">
                             <Logo>P</Logo>
                         </Link>
                     </Item>

@@ -37,10 +37,12 @@ Route.group(() => {
   ))
 
   Route.get('roles', 'RoleController.index')
+
+  Route.put('/invites/:id', 'InviteController.update').validator('Invite/Update.js')
 }).middleware(['auth'])
 
 Route.group(() => {
-  Route.resource('invites', 'InviteController').apiOnly().except('get').validator(new Map(
+  Route.resource('invites', 'InviteController').apiOnly().except(['get', 'put']).validator(new Map(
     [
       ['invites.store', 'Invite/Create.js'],
       ['invites.update', 'Invite/Update.js']

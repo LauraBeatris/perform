@@ -169,6 +169,7 @@ export const Team = styled.button`
 
     cursor: pointer;
     display: flex;
+    align-items: center;
     padding: 12px;
     width: 100%;
     min-height: 42px;
@@ -182,5 +183,12 @@ export const Team = styled.button`
 
     & + & {
         margin-top: ${({ theme }) => `${theme.spaces[2]}px`};
+    }
+
+    button {
+        margin-left: auto;
+        background: none;
+        border: none;
+        color: ${({ theme }) => theme.colors.dark};
     }
 `;

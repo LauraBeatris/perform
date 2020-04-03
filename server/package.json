@@ -36,6 +36,7 @@
     "adonis-acl": "^1.1.1",
     "adonis-kue": "^5.0.1",
     "adonis-sentry": "^2.0.2",
+    "date-fns": "^2.11.1",
     "pg": "^7.18.2",
     "youch": "^2.0.10"
   },

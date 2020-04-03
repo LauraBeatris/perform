@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IoMdNotificationsOutline } from 'react-icons/io';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 
 export const Container = styled.div`
     position: relative;
@@ -74,10 +74,23 @@ export const Content = styled.div`
         background: ${({ theme }) => theme.colors.dark};
         padding: ${({ theme }) => `${theme.spaces[3]}px`};
         border-radius: 4px 0 0 0;
-        font-size: ${({ theme }) => theme.fontSizes['2xs']};
+        display: flex;
 
         strong {
             color: ${({ theme }) => theme.colors.white};
+            font-size: ${({ theme }) => theme.fontSizes['2xs']};
+        }
+
+        button {
+            color: ${({ theme }) => theme.colors.purple};
+            background: none;
+            border: none;
+            margin-left: auto;
+            font-size: ${({ theme }) => theme.fontSizes['2xs']};
+
+            &:hover {
+                color: ${({ theme }) => lighten(0.1, theme.colors.purple)};
+            }
         }
     }
 
@@ -88,7 +101,7 @@ export const Content = styled.div`
 
         button {
             color: ${({ theme }) => theme.colors.purple};
-            font-weight: bold;
+            font-weight: 400;
             margin: auto;
             font-size: ${({ theme }) => theme.fontSizes['2xs']};
             display: block;
@@ -123,6 +136,12 @@ export const Item = styled.li`
     color: ${({ theme }) => theme.colors.white};
     border-bottom: 1px solid rgb(37, 36, 43);
     display: flex;
+
+    &#empty-message {
+        span {
+            margin: 0 auto;
+        }
+    }
 
     button {
         border-radius: 4px;

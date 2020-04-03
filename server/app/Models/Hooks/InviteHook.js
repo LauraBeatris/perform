@@ -29,7 +29,7 @@ InviteHook.invitation = async (inviteInstance) => {
 
     Notification.create({
       title: 'Team Invitation',
-      description: `<span>You were invited to the <strong>${team}</strong> by <strong>${user.name}</strong></span>`,
+      description: `<span>You were invited to the <strong>${team.name} Team</strong> by <strong>${user.name}</strong></span>`,
       invite_id: inviteInstance.id,
       links_to: `teams:user:${invited.id}`,
       author_id: user.id,

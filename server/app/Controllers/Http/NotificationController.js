@@ -6,7 +6,7 @@ class NotificationController {
   async index ({ request, response }) {
     try {
       const { page } = request.get()
-      const notifications = await Notification.query().paginate(page, 8)
+      const notifications = await Notification.query().with('user').with('author').paginate(page, 4)
       return notifications
     } catch (err) {
       return response.status(err.status || 500).send(
@@ -55,10 +55,11 @@ class NotificationController {
 
   async update ({ params, request, response }) {
     try {
-      const data = request.only(['title', 'description', 'invite_id'])
+      const data = request.only(['title', 'description', 'invite_id', 'viewed'])
       const notification = await Notification.findOrFail(params.id)
 
       notification.merge(data)
+      await notification.save()
 
       return notification
     } catch (err) {
