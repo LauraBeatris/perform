@@ -7,7 +7,7 @@ import { AiOutlineLogout } from 'react-icons/ai';
 
 import { UserCreators } from '~/store/ducks/user';
 import Dots from '~/assets/dots.png';
-import { Container, Content, ListItems, Item } from './styles';
+import { Container, Content, ListItems, Item, ActionItem } from './styles';
 
 function SignOut({ children }) {
     const dispatch = useDispatch();
@@ -17,13 +17,9 @@ function SignOut({ children }) {
     }
 
     return (
-        <button
-            type="button"
-            onClick={handleClick}
-            style={{ background: 'none', border: 'none', display: 'inherit' }}
-        >
+        <ActionItem type="button" onClick={handleClick}>
             {children}
-        </button>
+        </ActionItem>
     );
 }
 
@@ -75,12 +71,10 @@ export default function Profile() {
                             <span>Account</span>
                         </Link>
                     </Item>
-                    <Item>
-                        <SignOut>
-                            <AiOutlineLogout size="16px" />
-                            <span>Sign Off</span>
-                        </SignOut>
-                    </Item>
+                    <SignOut>
+                        <AiOutlineLogout size="16px" />
+                        <span>Sign Off</span>
+                    </SignOut>
                 </ListItems>
             </Content>
         </Container>

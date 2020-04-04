@@ -151,7 +151,6 @@ export const AddButton = styled.button`
 `;
 
 export const List = styled.ul`
-    list-style: none;
     display: flex;
     flex-direction: column;
 `;

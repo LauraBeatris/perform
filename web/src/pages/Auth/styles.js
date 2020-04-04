@@ -63,7 +63,6 @@ export const Back = styled(Link)`
 
 export const Links = styled.ul`
     ${space}
-    list-style: none;
 `;
 
 export const LinkItem = styled.li`

@@ -6,7 +6,7 @@ class NotificationController {
   async index ({ request, response }) {
     try {
       const { page } = request.get()
-      const notifications = await Notification.query().with('user').with('author').paginate(page, 4)
+      const notifications = await Notification.query().with('user').with('author').orderBy('created_at', 'desc').paginate(page, 4)
       return notifications
     } catch (err) {
       return response.status(err.status || 500).send(

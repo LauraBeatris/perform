@@ -31,8 +31,8 @@ const INITIAL_STATE = {
 
 export const membersSuccess = (state, { data, pagination }) => {
     return produce(state, draft => {
-        draft.data = data
-        draft.pagination = pagination
+        draft.data = data;
+        draft.pagination = pagination;
         return draft;
     });
 };
@@ -41,32 +41,34 @@ export const membersFailure = (state, { error }) => {
     return produce(state, draft => {
         draft.error = error;
         return draft;
-    })
-}
+    });
+};
 
 export const updateRolesRequest = (state, { memberId }) => {
     return produce(state, draft => {
         draft.loading = { value: true, id: memberId };
         return draft;
-    })
-}
+    });
+};
 
 export const updateRolesSuccess = (state, { memberId, roles }) => {
     return produce(state, draft => {
-        draft.loading = false
-        draft.data  = draft.data.map(member => member.id === memberId ? ({...member, roles }) : member)
-        draft.error = null
+        draft.loading = false;
+        draft.data = draft.data.map(member =>
+            member.id === memberId ? { ...member, roles } : member
+        );
+        draft.error = null;
         return draft;
-    })
-}
+    });
+};
 
 export const updateRolesFailure = (state, { error }) => {
     return produce(state, draft => {
         draft.loading = false;
-        draft.error = error
+        draft.error = error;
         return draft;
-    })
-}
+    });
+};
 
 export const openMembersModal = (state, _) => {
     return produce(state, draft => {

@@ -14,6 +14,7 @@ export default createGlobalStyle`
 
     body {
         font-family: 'Roboto', sans-serif;
+        -webkit-font-smoothing: antialiased !important;
     }
 
     input, button {
@@ -22,6 +23,10 @@ export default createGlobalStyle`
 
     button {
         cursor: pointer;
+    }
+
+    ul {
+        list-style: none;
     }
 
     body::-webkit-scrollbar {

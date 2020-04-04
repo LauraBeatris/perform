@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiPackage } from 'react-icons/fi';
-import { FaSearch, FaUsers } from 'react-icons/fa';
+import { /* FaSearch, */ FaUsers } from 'react-icons/fa';
 
 import {
     Container,
     Header,
     Actions,
-    InputWrapper,
+    // InputWrapper,
     Message,
     Text,
     ProjectList,
@@ -56,7 +56,7 @@ export default function Projects() {
     return (
         <Container>
             <Helmet>
-                {active && active.name ? (
+                {active?.name ? (
                     <title> Perform | Projects of {active.name} team </title>
                 ) : (
                     <title> Perform | No selected team </title>
@@ -64,7 +64,7 @@ export default function Projects() {
             </Helmet>
             <Header>
                 <Message>
-                    {active && active.name ? (
+                    {active?.name ? (
                         <>
                             {active.name}
                             <br />
@@ -78,10 +78,10 @@ export default function Projects() {
                 </Message>
 
                 <Actions>
-                    <InputWrapper>
+                    {/* <InputWrapper>
                         <FaSearch />
                         <input type="text" name="team" placeholder="Search.." />
-                    </InputWrapper>
+                    </InputWrapper> */}
 
                     <Button
                         icon={<FiPackage size="20" />}

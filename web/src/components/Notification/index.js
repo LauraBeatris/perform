@@ -20,7 +20,7 @@ import { TeamCreators } from '~/store/ducks/teams';
 export default function Notification() {
     const [page, setPage] = useState(1);
     const [active, setActive] = useState(false);
-    const [notifications, setNotifications] = useState({ data: [] });
+    const [notifications, setNotifications] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -39,7 +39,8 @@ export default function Notification() {
         async function fetchNotifications() {
             try {
                 const response = await api.getNotifications();
-                setNotifications(response);
+                setNotifications(response.data);
+                setPage(response.page);
             } catch (err) {
                 addToast('Error trying to list the available notifications', {
                     appearance: 'error',
@@ -63,23 +64,17 @@ export default function Notification() {
         return () => ws && ws.close();
     }, []);
 
-    const notificationsCount = useMemo(() => {
-        return notifications.data.filter(notification => !notification.viewed)
-            .length;
-    }, [notifications.data]);
-
     function handleClick() {
         setActive(!active);
     }
 
     async function acceptInvite(inviteId) {
         await api.updateInvite(inviteId, { confirmed: true });
-        setNotifications({
-            ...notifications,
-            data: notifications.data.filter(
+        setNotifications(oldNotifications =>
+            oldNotifications.filter(
                 notification => notification.invite_id !== inviteId
-            ),
-        });
+            )
+        );
 
         addToast('The invite to join the team was successfully accepted 🚀', {
             appearance: 'success',
@@ -91,7 +86,7 @@ export default function Notification() {
     }
 
     async function viewNotifications() {
-        const notificationIds = notifications.data.map(
+        const notificationIds = notifications.map(
             notification => notification.id
         );
         const viewedNotifications = await api.updateNotifications(
@@ -99,7 +94,7 @@ export default function Notification() {
             { viewed: true }
         );
 
-        const updatedNotifications = notifications.data.map(notification => {
+        const updatedNotifications = notifications.map(notification => {
             const found = viewedNotifications.find(
                 viewedNotification => viewedNotification.id === notification.id
             );
@@ -107,36 +102,35 @@ export default function Notification() {
             if (found) notification = Object.assign(notification, found);
             return notification;
         });
-        setNotifications({ ...notifications, data: updatedNotifications });
+        setNotifications(updatedNotifications);
     }
 
     async function loadMore() {
         const newPage = page + 1;
-        setPage(newPage);
-
-        const nextNotifications = await api.getNotifications(newPage);
-        if (nextNotifications.data.length > 0)
-            setNotifications({
-                ...notifications,
-                data: [...notifications.data, ...nextNotifications.data],
-            });
+        const response = await api.getNotifications(newPage);
+        if (response.data.length > 0) {
+            setPage(response.page);
+            setNotifications([...notifications, ...response.data]);
+        }
     }
 
     async function handleDelete(id) {
         await api.deleteNotification(id);
-        setNotifications({
-            ...notifications,
-            data: notifications.data.filter(
-                notification => notification.id !== id
-            ),
-        });
+        setNotifications(oldNotifications =>
+            oldNotifications.filter(notification => notification.id !== id)
+        );
     }
+
+    const total = useMemo(
+        () => notifications.filter(notification => !notification.viewed).length,
+        [notifications]
+    );
 
     return (
         <Container id="notification-container">
             <button type="button" onClick={handleClick}>
                 <Icon />
-                <Badge>{notificationsCount}</Badge>
+                <Badge>{total}</Badge>
             </button>
 
             <Content active={active}>
@@ -149,9 +143,9 @@ export default function Notification() {
                     </button>
                 </header>
                 <NotificationList>
-                    {notifications.data.length > 0 ? (
-                        notifications.data.map(notification => (
-                            <Item>
+                    {notifications.length > 0 ? (
+                        notifications.map(notification => (
+                            <Item key={notification.id}>
                                 {ReactHTMLParser(notification.description)}
                                 {notification.invite_id && (
                                     <button

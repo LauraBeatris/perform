@@ -52,7 +52,6 @@ export const Message = styled.h1`
 
 export const Options = styled.ul`
     flex: 1;
-    list-style: none;
     display: flex;
     flex-direction: column;
     justify-content: center;

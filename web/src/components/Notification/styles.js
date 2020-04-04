@@ -111,7 +111,6 @@ export const Content = styled.div`
 
 export const NotificationList = styled.ul`
     display: block;
-    list-style: none;
     background: ${({ theme }) => darken(0.2, theme.colors['dark-secondary'])};
     width: 100%;
     max-height: 235px;

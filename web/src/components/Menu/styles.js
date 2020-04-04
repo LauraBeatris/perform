@@ -135,7 +135,6 @@ export const ListItems = styled.ul`
     align-items: center;
     flex-direction: row;
 
-    list-style: none;
     padding: ${({ theme }) => `${theme.spaces[3]}px`};
 
     @media screen and (min-width: 1000px) {

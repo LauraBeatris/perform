@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineMail } from 'react-icons/ai';
 import { Scope } from '@unform/core';
@@ -46,9 +46,9 @@ export default function CreateMembersModal() {
         }
     }
 
-    function handleClose() {
+    const handleClose = useCallback(() => {
         dispatch(MembersCreators.closeMembersModal());
-    }
+    }, [dispatch]);
 
     function handleUpdateRoles(data, memberId, actions) {
         // Asking the user if he really wants to remove the moderator role
@@ -89,8 +89,7 @@ export default function CreateMembersModal() {
         document.addEventListener('click', handleOverlayClick);
 
         return () => document.removeEventListener('click', handleOverlayClick);
-        // eslint-disable-next-line
-    }, []);
+    }, [handleClose]);
 
     useEffect(() => {
         dispatch(MembersCreators.membersRequest());
@@ -99,8 +98,8 @@ export default function CreateMembersModal() {
     useEffect(() => {
         async function fetchRoles() {
             try {
-                const data = await api.getRoles();
-                setRoles(data);
+                const response = await api.getRoles();
+                setRoles(response);
             } catch (err) {
                 addToast('Error trying to list the members roles', {
                     appearance: 'error',

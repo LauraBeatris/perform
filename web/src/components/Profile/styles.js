@@ -70,7 +70,6 @@ export const Content = styled.div`
 
 export const ListItems = styled.ul`
     display: block;
-    list-style: none;
     background: ${({ theme }) => theme.colors.dark};
     width: 100%;
     max-height: 235px;
@@ -98,6 +97,39 @@ export const Item = styled.li`
     display: flex;
     align-items: center;
     background: inherit;
+
+    &:hover {
+        background: ${({ theme }) => darken(0.1, theme.colors.dark)};
+    }
+
+    svg {
+        color: ${({ theme }) => theme.colors.primary};
+        margin-right: ${({ theme }) => `${theme.spaces[2]}px`};
+    }
+
+    span {
+        color: ${({ theme }) => theme.colors.primary};
+        font-size: ${({ theme }) => theme.fontSizes['2xs']};
+        font-weight: bold;
+    }
+
+    a {
+        text-decoration: none;
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+`;
+
+export const ActionItem = styled.button`
+    padding: ${({ theme }) => `${theme.spaces[3]}px`};
+    color: ${({ theme }) => theme.colors.white};
+    border-bottom: 1px solid rgb(33, 32, 44);
+    display: flex;
+    align-items: center;
+    background: inherit;
+    border: none;
+    width: 100%;
 
     &:hover {
         background: ${({ theme }) => darken(0.1, theme.colors.dark)};

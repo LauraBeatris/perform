@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Select from 'react-select'
+import Select from 'react-select';
 import { Form } from '@unform/web';
 
 export const Container = styled.div`
@@ -58,11 +58,9 @@ export const InviteForm = styled(Form)`
         align-items: center;
         grid-gap: ${({ theme }) => `${theme.spaces[2]}px`};
     }
-`
+`;
 
 export const MembersList = styled.ul`
-    list-style: none;
-
     li {
         background: #eee;
         border-radius: 4px;
@@ -113,4 +111,4 @@ export const StyledSelect = styled(Select)`
         margin-top: 0;
         width: 50%;
     }
-`
+`;
