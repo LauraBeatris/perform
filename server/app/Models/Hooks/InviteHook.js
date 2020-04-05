@@ -22,7 +22,7 @@ InviteHook.invitation = async (inviteInstance) => {
   if (invited) {
     // Send an confirmation email with the team invite
     jobData = {
-      data: { user, invited, email: invited.email, team, redirect_url: `${Env.get('REGISTER_SITE_URL')}/projects?team=${team.id}` },
+      data: { user, invited, email: invited.email, team, redirect_url: `${Env.get('REGISTER_SITE_URL')}/team/projects?team=${team.id}` },
       templates: ['emails/invitation', 'emails/invitation-text'],
       subject: `You were invited to join the ${team.name}`
     }

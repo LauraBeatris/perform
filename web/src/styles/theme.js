@@ -5,8 +5,9 @@ export default {
         purple: '#5748ad',
         yellow: '#eda446',
         dark: '#2b2929',
-        'dark-secondary': '#2B2929',
-        grayLight: '#999999',
+        'dark-secondary': '#2B2929', // graySecondary
+        grayLight: '#999999', // grayPrimary
+        graySecondary: '#748396',
         primary: '#DFE7ED',
         warning: '#E14B4B',
     },

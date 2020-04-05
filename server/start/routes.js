@@ -67,11 +67,4 @@ Route.group(() => {
   Route.put('members/:id', 'MemberController.update').validator('Member/Update.js').middleware(['is:(moderator||administrator)'])
 
   Route.get('permissions/:id', 'PermissionController.show')
-
-  Route.resource('projects.tasks', 'TaskController').apiOnly().validator(new Map(
-    [
-      ['projects.tasks.store', 'Task/Create.js'],
-      ['projects.tasks.update', 'Task/Update.js']
-    ]
-  ))
 }).middleware(['auth', 'team'])

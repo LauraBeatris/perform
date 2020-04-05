@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { withTheme } from 'styled-components';
-import { FaUsers, FaTasks } from 'react-icons/fa';
+import { FaUsers } from 'react-icons/fa';
 import { AiFillProject } from 'react-icons/ai';
 
 import { Overlay, Container, Logo, ListItems, Item } from './styles';
@@ -33,15 +33,9 @@ export function Menu({ location }) {
                         <strong>Teams</strong>
                     </Item>
                     <Item active={location.pathname.includes('projects')}>
-                        <Link to="/projects">
+                        <Link to="/team/projects">
                             <AiFillProject size="35px" />
                             <strong>Projects</strong>
-                        </Link>
-                    </Item>
-                    <Item active={location.pathname.includes('tasks')}>
-                        <Link to="/tasks">
-                            <FaTasks size="35px" />
-                            <strong>My Tasks</strong>
                         </Link>
                     </Item>
                 </ListItems>

@@ -2,7 +2,7 @@ import { produce } from 'immer';
 import { createActions, createReducer } from 'reduxsauce';
 
 import history from '~/routes/history';
-import { UserTypes } from './user'
+import { UserTypes } from './user';
 
 /*
    === Actions ===
@@ -61,7 +61,7 @@ export const selectTeam = (state, { team }) => {
                 Verify if the active team was null, meaning that is the first time that the user is selecting a active team
                 and redirect to the projects page
             */
-            if (draft.active && !state.active) history.push('/projects');
+            if (draft.active) history.push('/team/projects');
 
             try {
                 localStorage.setItem(
@@ -129,8 +129,8 @@ export const logout = state => {
         }
 
         return draft;
-    })
-}
+    });
+};
 
 const reducer = createReducer(INITIAL_STATE, {
     [Types.TEAMS_SUCCESS]: teamsSuccess,
@@ -142,7 +142,7 @@ const reducer = createReducer(INITIAL_STATE, {
     [Types.OPEN_TEAM_SWITCHER]: openTeamSwitcher,
     [Types.CLOSE_TEAM_SWITCHER]: closeTeamSwitcher,
     [Types.TOGGLE_TEAM_SWITCHER]: toggleTeamSwitcher,
-    [UserTypes.LOGOUT_SUCCESS]: logout
+    [UserTypes.LOGOUT_SUCCESS]: logout,
 });
 
 export default reducer;

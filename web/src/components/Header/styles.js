@@ -3,9 +3,8 @@ import { IoMdNotificationsOutline } from 'react-icons/io';
 
 export const Container = styled.header`
     position: fixed;
-    left: 0;
+    right: 0;
     top: 0;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: ${({ theme }) => `${theme.spaces[4]}px`};
@@ -19,7 +18,6 @@ export const Container = styled.header`
 
     @media screen and (min-width: 1000px) {
         padding: ${({ theme }) => `${theme.spaces[4]}px 5rem`};
-        z-index: initial;
     }
 `;
 

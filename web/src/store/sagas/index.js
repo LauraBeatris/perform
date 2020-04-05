@@ -16,6 +16,10 @@ import { listProjects, createProject } from './projects';
 import { MembersTypes } from '../ducks/members';
 import { listMembers, updateRoles } from './members';
 
+/* Pipes Sagas */
+import { PipeTypes } from '../ducks/pipes';
+import { listPipes } from './pipes';
+
 export default function* rootSaga() {
     return yield all([
         takeLatest(UserTypes.SIGN_UP_REQUEST, signUp),
@@ -30,5 +34,7 @@ export default function* rootSaga() {
 
         takeLatest(MembersTypes.MEMBERS_REQUEST, listMembers),
         takeLatest(MembersTypes.UPDATE_ROLES_REQUEST, updateRoles),
+
+        takeLatest(PipeTypes.PIPES_REQUEST, listPipes),
     ]);
 }

@@ -12,39 +12,45 @@ import Recover from '~/pages/Auth/Recover';
 
 import Account from '~/pages/Account';
 import Dashboard from '~/pages/Dashboard';
-import Projects from '~/pages/Projects';
+import Project from '~/pages/Project';
 import Tasks from '~/pages/Tasks';
 import Layout from '~/layouts/Main';
-import TeamsList from '~/pages/Teams/List';
+import Team from '~/pages/Team';
 
 export default function Routes() {
     return (
         <Router history={history}>
             <Switch>
-                {/* Dashboard and list of resource pages */}
+                {/* Sharing the layout to the exact routes */}
                 <Route
-                    exact
-                    path={['/tasks', '/projects', '/dashboard', '/teams']}
+                    path={[
+                        '/tasks',
+                        '/team/projects',
+                        '/dashboard',
+                        '/teams',
+                        '/account',
+                    ]}
                 >
                     <Layout>
                         <Switch>
-                            <PrivateRoute path="/teams" component={TeamsList} />
+                            <PrivateRoute path="/account" component={Account} />
+
                             <PrivateRoute path="/tasks" component={Tasks} />
+
                             <PrivateRoute
-                                path="/projects"
-                                component={Projects}
+                                path="/team/projects/:id"
+                                component={Project}
+                            />
+                            <PrivateRoute
+                                exact
+                                path="/team/projects"
+                                component={Team}
                             />
                             <PrivateRoute
                                 path="/dashboard"
                                 component={Dashboard}
                             />
                         </Switch>
-                    </Layout>
-                </Route>
-
-                <Route path="/account">
-                    <Layout>
-                        <PrivateRoute path="/account" render={Account} />
                     </Layout>
                 </Route>
 

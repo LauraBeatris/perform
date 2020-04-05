@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import Helmet from 'react-helmet';
 import { ThemeProvider } from 'styled-components';
+import { DndProvider } from 'react-dnd';
+import DndBackend from 'react-dnd-html5-backend';
 
 import GlobalStyles from '~/styles/global';
 import theme from '~/styles/theme';
@@ -39,7 +41,9 @@ function AppContainer(Component) {
                                 placement="top-right"
                             >
                                 <ThemeProvider theme={theme}>
-                                    <Component {...this.props} />
+                                    <DndProvider backend={DndBackend}>
+                                        <Component {...this.props} />
+                                    </DndProvider>
                                 </ThemeProvider>
                             </ToastProvider>
                         </PersistGate>

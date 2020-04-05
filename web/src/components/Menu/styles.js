@@ -21,7 +21,6 @@ export const Container = styled.nav`
     background: ${({ theme }) => theme.colors.white};
     box-shadow: 1px 2px 4px -4px rgba(0, 0, 0, 0.7);
     transition: width 0.3s ease-in-out;
-    z-index: 2;
 
     @media screen and (max-width: 800px) {
         bottom: 0;

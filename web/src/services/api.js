@@ -180,6 +180,146 @@ class Api {
                 .catch(err => reject(err));
         });
     }
+
+    getPipes() {
+        // eslint-disable-next-line
+        const { api } = this;
+        return [
+            {
+                title: 'To do',
+                creatable: true,
+                tasks: [
+                    {
+                        id: 1,
+                        content: 'Estudar módulo 01 de NodeJS',
+                        tags: [{ title: 'Urgency', color: '#7159c1' }],
+                        user: {
+                            avatar:
+                                'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/profile.png',
+                            name: 'Laura',
+                        },
+                    },
+                    {
+                        id: 2,
+                        content:
+                            'Criar vídeo para o Youtube ensinando a recriar a interface do Pipefy',
+                        tags: [{ title: 'Urgency', color: '#7159c1' }],
+                        user: {
+                            avatar:
+                                'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/profile.png',
+                            name: 'Laura',
+                        },
+                    },
+                    {
+                        id: 3,
+                        content: 'Estudar módulo 03 de React Native',
+                        tags: [{ title: 'Urgency', color: '#7159c1' }],
+                        user: {
+                            avatar:
+                                'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/profile.png',
+                            name: 'Laura',
+                        },
+                    },
+                    {
+                        id: 4,
+                        content:
+                            'Gravar Aula "NextJS: Utilizando server-side rendering com ReactJS"',
+                        tags: [
+                            { title: 'Urgency', color: '#7159c1' },
+                            { title: 'Giggly', color: '#54e1f7' },
+                        ],
+                        user: {
+                            avatar:
+                                'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/profile.png',
+                            name: 'Laura',
+                        },
+                    },
+                    {
+                        id: 5,
+                        content: 'Gravar testes e deploy ReactJS',
+                        tags: [{ title: 'Urgency', color: '#7159c1' }],
+                        user: {
+                            avatar:
+                                'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/profile.png',
+                            name: 'Laura',
+                        },
+                    },
+                ],
+            },
+            {
+                title: 'Doing',
+                creatable: false,
+                tasks: [
+                    {
+                        id: 6,
+                        content: 'Recriando clone do Pipefy',
+                        tags: [],
+                        user: {
+                            avatar:
+                                'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/profile.png',
+                            name: 'Laura',
+                        },
+                    },
+                ],
+            },
+            {
+                title: 'Backlog',
+                creatable: false,
+                tasks: [
+                    {
+                        id: 7,
+                        content:
+                            'Gravar sobre Geolocalização e mapas com React Native',
+                        tags: [{ title: 'Urgency', color: '#7159c1' }],
+                        user: {
+                            avatar:
+                                'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/profile.png',
+                            name: 'Laura',
+                        },
+                    },
+                    {
+                        id: 8,
+                        content: 'Gravar testes e deploy ReactJS',
+                        tags: [{ title: 'Urgency', color: '#54e1f7' }],
+                        user: {
+                            avatar:
+                                'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/profile.png',
+                            name: 'Laura',
+                        },
+                    },
+                    {
+                        id: 9,
+                        content: 'Ajustes na biblioteca unform',
+                        tags: [],
+                    },
+                ],
+            },
+            {
+                title: 'Done',
+                creatable: false,
+                done: true,
+                tasks: [
+                    {
+                        id: 10,
+                        content:
+                            'Gravar aula sobre deploy e CI com React Native',
+                        tags: [],
+                    },
+                    {
+                        id: 12,
+                        content: 'Gravar testes e deploy ReactJS',
+                        tags: [{ title: 'Urgency', color: '#7159c1' }],
+                    },
+                    {
+                        id: 13,
+                        content:
+                            'Gravar Aula "Internacionalização de aplicações Node.js, ReactJS e React Native"',
+                        tags: [{ title: 'Urgency', color: '#7159c1' }],
+                    },
+                ],
+            },
+        ];
+    }
 }
 
 export default new Api();

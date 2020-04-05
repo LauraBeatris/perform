@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiPackage } from 'react-icons/fi';
 import { /* FaSearch, */ FaUsers } from 'react-icons/fa';
+import { useHistory } from 'react-router-dom';
 
 import {
     Container,
@@ -24,16 +25,9 @@ import { MembersCreators } from '~/store/ducks/members';
 
 export default function Projects() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const active = useSelector(state => state.teams.active);
     const data = useSelector(state => state.projects.data);
-
-    function openCreateProjectModal() {
-        dispatch(ProjectCreators.openCreateProjectModal());
-    }
-
-    function openMembersModal() {
-        dispatch(MembersCreators.openMembersModal());
-    }
 
     useEffect(() => {
         if (!active) {
@@ -52,6 +46,21 @@ export default function Projects() {
             dispatch(ProjectCreators.projectsRequest());
         }
     }, [active, dispatch]);
+
+    function openCreateProjectModal() {
+        dispatch(ProjectCreators.openCreateProjectModal());
+    }
+
+    function openMembersModal() {
+        dispatch(MembersCreators.openMembersModal());
+    }
+
+    function handleProjectNavigation(project) {
+        return history.push({
+            pathname: `/team/projects/${project.id}`,
+            state: { project },
+        });
+    }
 
     return (
         <Container>
@@ -114,7 +123,10 @@ export default function Projects() {
             ) : (
                 <ProjectList>
                     {data.map(project => (
-                        <Project key={project.id}>
+                        <Project
+                            key={project.id}
+                            onClick={() => handleProjectNavigation(project)}
+                        >
                             <ProjectHeader>
                                 <strong>{project.title}</strong>
                                 <img

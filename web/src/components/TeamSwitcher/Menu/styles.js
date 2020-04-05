@@ -15,7 +15,6 @@ export const Container = styled.nav`
     box-shadow: 1px 2px 4px -4px rgba(0, 0, 0, 0.7);
     display: flex;
     position: fixed;
-    z-index: 1;
 
     @media screen and (max-width: 800px) {
         transition: height 0.3s ease-in-out;
@@ -88,6 +87,7 @@ export const Content = styled.div`
         margin: ${({ theme }) => `${theme.spaces[4]}px 0`};
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 `;
 
@@ -136,8 +136,8 @@ export const AddButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
 
     transition: background 0.3s, transform 0.3s;
     &:hover {

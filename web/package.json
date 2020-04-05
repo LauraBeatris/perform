@@ -12,6 +12,7 @@
     "@unform/core": "^2.0.0",
     "@unform/web": "^2.0.0",
     "@zeplin/cli-connect-storybook-plugin": "^0.1.4",
+    "add": "^2.0.6",
     "axios": "^0.19.2",
     "babel-eslint": "^10.1.0",
     "babel-plugin-root-import": "^6.4.1",
@@ -24,6 +25,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-app-rewired": "^2.1.5",
+    "react-dnd": "^10.0.2",
+    "react-dnd-html5-backend": "^10.0.2",
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
     "react-html-parser": "^2.0.2",
@@ -43,6 +46,7 @@
     "reduxsauce": "^1.1.2",
     "styled-components": "^5.0.1",
     "styled-system": "^5.1.5",
+    "yarn": "^1.22.4",
     "yup": "^0.28.3"
   },
   "scripts": {

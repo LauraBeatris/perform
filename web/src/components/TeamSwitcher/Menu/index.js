@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaSearch } from 'react-icons/fa';
+import { MdAdd } from 'react-icons/md';
 
 import {
     Container,
@@ -65,7 +66,7 @@ export default function TeamSwitcherMenu() {
                         color="white"
                         onClick={openCreateTeamModal}
                     >
-                        +
+                        <MdAdd size={24} color="#fff" />
                     </AddButton>
                 </div>
 
